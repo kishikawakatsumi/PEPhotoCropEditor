@@ -24,8 +24,8 @@ static const CGFloat MarginRight = MarginLeft;
 @property (nonatomic) CALayer *overlayLayer;
 @property (nonatomic) CAShapeLayer *cropLayer;
 
-@property (nonatomic) CGRect initialEditableRect;
-@property (nonatomic) CGRect editableRect;
+@property (nonatomic) CGRect insetRect;
+@property (nonatomic) CGRect editingRect;
 @property (nonatomic) CGRect cropRect;
 
 @property (nonatomic, getter = isResizing) BOOL resizing;
@@ -98,19 +98,19 @@ static const CGFloat MarginRight = MarginLeft;
     
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        self.editableRect = CGRectInset(self.bounds, MarginLeft, MarginTop);
+        self.editingRect = CGRectInset(self.bounds, MarginLeft, MarginTop);
     } else {
-        self.editableRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
+        self.editingRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
     }
     
     if (!self.imageView) {
         if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-            self.initialEditableRect = CGRectInset(self.bounds, MarginLeft, MarginTop);
+            self.insetRect = CGRectInset(self.bounds, MarginLeft, MarginTop);
         } else {
-            self.initialEditableRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
+            self.insetRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
         }
         
-        self.cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.initialEditableRect);
+        self.cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.insetRect);
         
         self.scrollView.frame = self.cropRect;
         self.scrollView.contentSize = self.cropRect.size;
@@ -171,9 +171,9 @@ static const CGFloat MarginRight = MarginLeft;
     CGFloat ratio = 1.0f;
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(orientation)) {
-        ratio = CGRectGetWidth(AVMakeRectWithAspectRatioInsideRect(self.image.size, self.initialEditableRect)) / size.width;
+        ratio = CGRectGetWidth(AVMakeRectWithAspectRatioInsideRect(self.image.size, self.insetRect)) / size.width;
     } else {
-        ratio = CGRectGetHeight(AVMakeRectWithAspectRatioInsideRect(self.image.size, self.initialEditableRect)) / size.height;
+        ratio = CGRectGetHeight(AVMakeRectWithAspectRatioInsideRect(self.image.size, self.insetRect)) / size.height;
     }
     
     CGRect zoomedCropRect = CGRectMake(cropRect.origin.x / ratio,
@@ -245,10 +245,10 @@ static const CGFloat MarginRight = MarginLeft;
     [self layoutCropRectViewWithCropRect:cropRect];
     [self layoutCropLayerWithCropRect:cropRect];
     
-    if (CGRectGetMinX(cropRect) < CGRectGetMinX(self.editableRect) - 5.0f ||
-        CGRectGetMaxX(cropRect) > CGRectGetMaxX(self.editableRect) + 5.0f ||
-        CGRectGetMinY(cropRect) < CGRectGetMinY(self.editableRect) - 5.0f ||
-        CGRectGetMaxY(cropRect) > CGRectGetMaxY(self.editableRect) + 5.0f) {
+    if (CGRectGetMinX(cropRect) < CGRectGetMinX(self.editingRect) - 5.0f ||
+        CGRectGetMaxX(cropRect) > CGRectGetMaxX(self.editingRect) + 5.0f ||
+        CGRectGetMinY(cropRect) < CGRectGetMinY(self.editingRect) - 5.0f ||
+        CGRectGetMaxY(cropRect) > CGRectGetMaxY(self.editingRect) + 5.0f) {
         [UIView animateWithDuration:1.0
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState
@@ -271,7 +271,7 @@ static const CGFloat MarginRight = MarginLeft;
     CGFloat width = CGRectGetWidth(cropRect);
     CGFloat height = CGRectGetHeight(cropRect);
     
-    CGFloat scale = MIN(CGRectGetWidth(self.editableRect) / width, CGRectGetHeight(self.editableRect) / height);
+    CGFloat scale = MIN(CGRectGetWidth(self.editingRect) / width, CGRectGetHeight(self.editingRect) / height);
     
     CGFloat scaledWidth = width * scale;
     CGFloat scaledHeight = height * scale;

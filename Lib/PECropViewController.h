@@ -18,5 +18,6 @@
 @protocol PECropViewControllerDelegate <NSObject>
 
 - (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage;
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller;
 
 @end

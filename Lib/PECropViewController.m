@@ -32,10 +32,14 @@
 {
     [super viewDidLoad];
     
-    self.navigationController.toolbarHidden = NO;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                          target:self
+                                                                                          action:@selector(cancel:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                            target:self
                                                                                            action:@selector(done:)];
+    self.navigationController.toolbarHidden = NO;
+    
     self.cropView.image = self.image;
 }
 
@@ -43,6 +47,13 @@
 {
     _image = image;
     self.cropView.image = image;
+}
+
+- (void)cancel:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(cropViewControllerDidCancel:)]) {
+        [self.delegate cropViewControllerDidCancel:self];
+    }
 }
 
 - (void)done:(id)sender
