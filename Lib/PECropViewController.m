@@ -43,6 +43,11 @@
     self.cropView.image = self.image;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
 - (void)setImage:(UIImage *)image
 {
     _image = image;
