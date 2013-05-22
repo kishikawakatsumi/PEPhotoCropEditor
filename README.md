@@ -18,8 +18,7 @@ MIT License
 
 ## Usage
 
-- Use view controller component
-
+**Use view controller component**
 ```objective-c
  PECropViewController *controller = [[PECropViewController alloc] init];
  controller.delegate = self;
@@ -29,8 +28,7 @@ MIT License
  [self presentViewController:navigationController animated:YES completion:NULL];
 ```
 
-- Or use the crop view directly
-
+**Or use the crop view directly**
 ```objective-c
 self.cropView = [[PECropView alloc] initWithFrame:contentView.bounds];
 [self.view addSubview:self.cropView];
@@ -38,7 +36,7 @@ self.cropView = [[PECropView alloc] initWithFrame:contentView.bounds];
 
 ### Get the cropped image
 
-- delegate method
+**delegate method**
 ```objective-c
 - (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
 {
@@ -47,7 +45,7 @@ self.cropView = [[PECropView alloc] initWithFrame:contentView.bounds];
 }
 ```
 
-- retrieve from view directly
+***retrieve from view directly***
 ```objective-c
 UIImage *croppedImage = self.cropView.croppedImage;
 ```
