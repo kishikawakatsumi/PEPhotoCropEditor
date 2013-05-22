@@ -24,6 +24,7 @@ static const CGFloat MarginRight = MarginLeft;
 @property (nonatomic) CALayer *overlayLayer;
 @property (nonatomic) CAShapeLayer *cropLayer;
 
+@property (nonatomic) CGRect initialEditableRect;
 @property (nonatomic) CGRect editableRect;
 @property (nonatomic) CGRect cropRect;
 
@@ -103,7 +104,13 @@ static const CGFloat MarginRight = MarginLeft;
     }
     
     if (!self.imageView) {
-        self.cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.editableRect);
+        if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+            self.initialEditableRect = CGRectInset(self.bounds, MarginLeft, MarginTop);
+        } else {
+            self.initialEditableRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
+        }
+        
+        self.cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.initialEditableRect);
         
         self.scrollView.frame = self.cropRect;
         self.scrollView.contentSize = self.cropRect.size;
@@ -123,10 +130,6 @@ static const CGFloat MarginRight = MarginLeft;
         
         [self layoutCropRectViewWithCropRect:self.scrollView.frame];
         [self layoutCropLayerWithCropRect:self.scrollView.frame];
-        
-        if (self.scrollView.zoomScale == 1.0f) {
-            self.imageView.frame = self.scrollView.bounds;
-        }
         
         if (self.interfaceOrientation != interfaceOrientation) {
             [self zoomToCropRect:self.scrollView.frame];
@@ -168,9 +171,9 @@ static const CGFloat MarginRight = MarginLeft;
     CGFloat ratio = 1.0f;
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad || UIInterfaceOrientationIsPortrait(orientation)) {
-        ratio = CGRectGetWidth(self.editableRect) / size.width;
+        ratio = CGRectGetWidth(AVMakeRectWithAspectRatioInsideRect(self.image.size, self.initialEditableRect)) / size.width;
     } else {
-        ratio = CGRectGetHeight(self.editableRect) / size.height;
+        ratio = CGRectGetHeight(AVMakeRectWithAspectRatioInsideRect(self.image.size, self.initialEditableRect)) / size.height;
     }
     
     CGRect zoomedCropRect = CGRectMake(cropRect.origin.x / ratio,
@@ -242,20 +245,19 @@ static const CGFloat MarginRight = MarginLeft;
     [self layoutCropRectViewWithCropRect:cropRect];
     [self layoutCropLayerWithCropRect:cropRect];
     
-//    if (CGRectGetMinX(cropRect) < CGRectGetMinX(self.editableRect) - 5.0f ||
-//        CGRectGetMaxX(cropRect) > CGRectGetMaxX(self.editableRect) + 5.0f ||
-//        CGRectGetMinY(cropRect) < CGRectGetMinY(self.editableRect) - 5.0f ||
-//        CGRectGetMaxY(cropRect) > CGRectGetMaxY(self.editableRect) + 5.0f) {
-//        
-//        [UIView animateWithDuration:1.0
-//                              delay:0.0
-//                            options:UIViewAnimationOptionBeginFromCurrentState
-//                         animations:^{
-//                             [self zoomToCropRect:self.cropRectView.frame];
-//                         } completion:^(BOOL finished) {
-//                             
-//                         }];
-//    }
+    if (CGRectGetMinX(cropRect) < CGRectGetMinX(self.editableRect) - 5.0f ||
+        CGRectGetMaxX(cropRect) > CGRectGetMaxX(self.editableRect) + 5.0f ||
+        CGRectGetMinY(cropRect) < CGRectGetMinY(self.editableRect) - 5.0f ||
+        CGRectGetMaxY(cropRect) > CGRectGetMaxY(self.editableRect) + 5.0f) {
+        [UIView animateWithDuration:1.0
+                              delay:0.0
+                            options:UIViewAnimationOptionBeginFromCurrentState
+                         animations:^{
+                             [self zoomToCropRect:self.cropRectView.frame];
+                         } completion:^(BOOL finished) {
+                             
+                         }];
+    }
 }
 
 - (void)cropRectViewDidEndEditing:(PECropRectView *)cropRectView
