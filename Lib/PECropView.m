@@ -81,7 +81,7 @@ static const CGFloat MarginRight = MarginLeft;
 {
     CGPoint locationInImageView = [self convertPoint:point toView:self.imageView];
     CGPoint zoomedPoint = CGPointMake(locationInImageView.x * self.scrollView.zoomScale, locationInImageView.y * self.scrollView.zoomScale);
-    if (!CGRectContainsPoint(self.scrollView.frame, point) && CGRectContainsPoint(self.imageView.frame, zoomedPoint)) {
+    if (!CGRectContainsPoint(CGRectInset(self.scrollView.frame, -22.0f, -22.0f), point) && CGRectContainsPoint(self.imageView.frame, zoomedPoint)) {
         return self.scrollView;
     }
     

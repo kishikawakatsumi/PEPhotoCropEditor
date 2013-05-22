@@ -48,6 +48,11 @@
     self.imageView.image = croppedImage;
 }
 
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
 #pragma mark -
 
 - (IBAction)openEditor:(id)sender
