@@ -45,7 +45,7 @@ self.cropView = [[PECropView alloc] initWithFrame:contentView.bounds];
 }
 ```
 
-***retrieve from view directly***
+**retrieve from view directly**
 ```objective-c
 UIImage *croppedImage = self.cropView.croppedImage;
 ```
