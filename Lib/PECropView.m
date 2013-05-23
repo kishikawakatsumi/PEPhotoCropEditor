@@ -181,22 +181,21 @@ static const CGFloat MarginRight = MarginLeft;
                                        cropRect.size.width / ratio,
                                        cropRect.size.height / ratio);
     
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(self.image.CGImage, [self convertCropRect:zoomedCropRect]);
+    CGImageRef croppedImage = CGImageCreateWithImageInRect(self.image.CGImage, [self normalizeCropRect:zoomedCropRect]);
     UIImage *image = [UIImage imageWithCGImage:croppedImage scale:1.0f orientation:self.image.imageOrientation];
     CGImageRelease(croppedImage);
     
     return image;
 }
 
-- (CGRect)convertCropRect:(CGRect)cropRect {
-    UIImage *originalImage = self.image;
-    
-    CGSize size = originalImage.size;
+- (CGRect)normalizeCropRect:(CGRect)cropRect {
+    UIImageOrientation imageOrientation = self.image.imageOrientation;
+    CGSize size = self.image.size;
     CGFloat x = cropRect.origin.x;
     CGFloat y = cropRect.origin.y;
     CGFloat width = cropRect.size.width;
     CGFloat height = cropRect.size.height;
-    UIImageOrientation imageOrientation = originalImage.imageOrientation;
+    
     if (imageOrientation == UIImageOrientationRight || imageOrientation == UIImageOrientationRightMirrored) {
         cropRect.origin.x = y;
         cropRect.origin.y = size.width - cropRect.size.width - x;
@@ -215,14 +214,7 @@ static const CGFloat MarginRight = MarginLeft;
     return cropRect;
 }
 
-#pragma mark -
-
-- (void)cropRectViewDidBeginEditing:(PECropRectView *)cropRectView
-{
-    self.resizing = YES;
-}
-
-- (void)cropRectViewEditingChanged:(PECropRectView *)cropRectView
+- (CGRect)cappedCropRectInImageRectWithCropRectView:(PECropRectView *)cropRectView
 {
     CGRect cropRect = cropRectView.frame;
     
@@ -242,9 +234,11 @@ static const CGFloat MarginRight = MarginLeft;
         cropRect.size.height = CGRectGetMaxY([self.scrollView convertRect:self.imageView.frame toView:self]) - CGRectGetMinY(cropRect);
     }
     
-    [self layoutCropRectViewWithCropRect:cropRect];
-    [self layoutCropLayerWithCropRect:cropRect];
-    
+    return cropRect;
+}
+
+- (void)automaticZoomIfEdgeTouched:(CGRect)cropRect
+{
     if (CGRectGetMinX(cropRect) < CGRectGetMinX(self.editingRect) - 5.0f ||
         CGRectGetMaxX(cropRect) > CGRectGetMaxX(self.editingRect) + 5.0f ||
         CGRectGetMinY(cropRect) < CGRectGetMinY(self.editingRect) - 5.0f ||
@@ -258,6 +252,23 @@ static const CGFloat MarginRight = MarginLeft;
                              
                          }];
     }
+}
+
+#pragma mark -
+
+- (void)cropRectViewDidBeginEditing:(PECropRectView *)cropRectView
+{
+    self.resizing = YES;
+}
+
+- (void)cropRectViewEditingChanged:(PECropRectView *)cropRectView
+{
+    CGRect cropRect = [self cappedCropRectInImageRectWithCropRectView:cropRectView];
+    
+    [self layoutCropRectViewWithCropRect:cropRect];
+    [self layoutCropLayerWithCropRect:cropRect];
+    
+    [self automaticZoomIfEdgeTouched:cropRect];
 }
 
 - (void)cropRectViewDidEndEditing:(PECropRectView *)cropRectView
