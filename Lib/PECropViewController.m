@@ -38,7 +38,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                            target:self
                                                                                            action:@selector(done:)];
-    self.navigationController.toolbarHidden = NO;
+    self.navigationController.navigationBarHidden = NO;
     
     self.cropView.image = self.image;
 }
