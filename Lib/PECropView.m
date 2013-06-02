@@ -28,7 +28,6 @@ static const CGFloat MarginRight = MarginLeft;
 
 @property (nonatomic) CGRect insetRect;
 @property (nonatomic) CGRect editingRect;
-@property (nonatomic) CGRect cropRect;
 
 @property (nonatomic, getter = isResizing) BOOL resizing;
 @property (nonatomic) UIInterfaceOrientation interfaceOrientation;
@@ -48,7 +47,7 @@ static const CGFloat MarginRight = MarginLeft;
         self.scrollView.delegate = self;
         self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
         self.scrollView.backgroundColor = [UIColor clearColor];
-        self.scrollView.maximumZoomScale = 10.0f;
+        self.scrollView.maximumZoomScale = 20.0f;
         self.scrollView.showsHorizontalScrollIndicator = NO;
         self.scrollView.showsVerticalScrollIndicator = NO;
         self.scrollView.bounces = NO;
@@ -143,29 +142,29 @@ static const CGFloat MarginRight = MarginLeft;
 - (void)layoutOverlayViewsWithCropRect:(CGRect)cropRect
 {
     self.topOverlayView.frame = CGRectMake(0.0f,
-                                    0.0f,
-                                    CGRectGetWidth(self.bounds),
-                                    CGRectGetMinY(cropRect));
+                                           0.0f,
+                                           CGRectGetWidth(self.bounds),
+                                           CGRectGetMinY(cropRect));
     self.leftOverlayView.frame = CGRectMake(0.0f,
-                                     CGRectGetMinY(cropRect),
-                                     CGRectGetMinX(cropRect),
-                                     CGRectGetHeight(cropRect));
+                                            CGRectGetMinY(cropRect),
+                                            CGRectGetMinX(cropRect),
+                                            CGRectGetHeight(cropRect));
     self.rightOverlayView.frame = CGRectMake(CGRectGetMaxX(cropRect),
-                                      CGRectGetMinY(cropRect),
-                                      CGRectGetWidth(self.bounds) - CGRectGetMaxX(cropRect),
-                                      CGRectGetHeight(cropRect));
+                                             CGRectGetMinY(cropRect),
+                                             CGRectGetWidth(self.bounds) - CGRectGetMaxX(cropRect),
+                                             CGRectGetHeight(cropRect));
     self.bottomOverlayView.frame = CGRectMake(0.0f,
-                                       CGRectGetMaxY(cropRect),
-                                       CGRectGetWidth(self.bounds),
-                                       CGRectGetHeight(self.bounds) - CGRectGetMaxY(cropRect));
+                                              CGRectGetMaxY(cropRect),
+                                              CGRectGetWidth(self.bounds),
+                                              CGRectGetHeight(self.bounds) - CGRectGetMaxY(cropRect));
 }
 
 - (void)setupImageView
 {
-    self.cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.insetRect);
+    CGRect cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.insetRect);
     
-    self.scrollView.frame = self.cropRect;
-    self.scrollView.contentSize = self.cropRect.size;
+    self.scrollView.frame = cropRect;
+    self.scrollView.contentSize = cropRect.size;
     
     self.zoomingView = [[UIView alloc] initWithFrame:self.scrollView.bounds];
     self.zoomingView.backgroundColor = [UIColor clearColor];
@@ -193,6 +192,37 @@ static const CGFloat MarginRight = MarginLeft;
     [self setNeedsLayout];
 }
 
+- (void)setAspectRatio:(CGFloat)aspectRatio
+{
+    CGRect cropRect = self.scrollView.frame;
+    CGFloat width = CGRectGetWidth(cropRect);
+    CGFloat height = CGRectGetHeight(cropRect);
+    if (width < height) {
+        width = height * aspectRatio;
+    } else {
+        height = width * aspectRatio;
+    }
+    cropRect.size = CGSizeMake(width, height);
+    [self zoomToCropRect:cropRect];
+}
+
+- (CGFloat)aspectRatio
+{
+    CGRect cropRect = self.scrollView.frame;
+    CGFloat width = CGRectGetWidth(cropRect);
+    CGFloat height = CGRectGetHeight(cropRect);
+    return width / height;
+}
+
+- (void)setCropRect:(CGRect)cropRect
+{
+    [self zoomToCropRect:cropRect];
+}
+
+- (CGRect)cropRect
+{
+    return self.scrollView.frame;
+}
 
 - (UIImage *)croppedImage
 {
@@ -302,32 +332,36 @@ static const CGFloat MarginRight = MarginLeft;
     [self zoomToCropRect:self.cropRectView.frame];
 }
 
-- (void)zoomToCropRect:(CGRect)cropRect
+- (void)zoomToCropRect:(CGRect)toRect
 {
-    CGFloat width = CGRectGetWidth(cropRect);
-    CGFloat height = CGRectGetHeight(cropRect);
+    if (CGRectEqualToRect(self.scrollView.frame, toRect)) {
+        return;
+    }
+    
+    CGFloat width = CGRectGetWidth(toRect);
+    CGFloat height = CGRectGetHeight(toRect);
     
     CGFloat scale = MIN(CGRectGetWidth(self.editingRect) / width, CGRectGetHeight(self.editingRect) / height);
     
     CGFloat scaledWidth = width * scale;
     CGFloat scaledHeight = height * scale;
-    self.cropRect = CGRectMake((CGRectGetWidth(self.bounds) - scaledWidth) / 2,
-                               (CGRectGetHeight(self.bounds) - scaledHeight) / 2,
-                               scaledWidth,
-                               scaledHeight);
+    CGRect cropRect = CGRectMake((CGRectGetWidth(self.bounds) - scaledWidth) / 2,
+                                 (CGRectGetHeight(self.bounds) - scaledHeight) / 2,
+                                 scaledWidth,
+                                 scaledHeight);
     
-    CGRect zoomRect = [self convertRect:cropRect toView:self.zoomingView];
-    zoomRect.size.width = CGRectGetWidth(self.cropRect) / (self.scrollView.zoomScale * scale);
-    zoomRect.size.height = CGRectGetHeight(self.cropRect) / (self.scrollView.zoomScale * scale);
+    CGRect zoomRect = [self convertRect:toRect toView:self.zoomingView];
+    zoomRect.size.width = CGRectGetWidth(cropRect) / (self.scrollView.zoomScale * scale);
+    zoomRect.size.height = CGRectGetHeight(cropRect) / (self.scrollView.zoomScale * scale);
     
     [UIView animateWithDuration:0.25
                           delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.scrollView.bounds = self.cropRect;
+                         self.scrollView.bounds = cropRect;
                          [self.scrollView zoomToRect:zoomRect animated:NO];
                          
-                         [self layoutCropRectViewWithCropRect:self.cropRect];
+                         [self layoutCropRectViewWithCropRect:cropRect];
                      } completion:^(BOOL finished) {
                          
                      }];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14707ADE175B29E900A58D40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14707AE0175B29E900A58D40 /* Localizable.strings */; };
 		14BB4E8A174BC39000C75F78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BB4E89174BC39000C75F78 /* UIKit.framework */; };
 		14BB4E8C174BC39000C75F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BB4E8B174BC39000C75F78 /* Foundation.framework */; };
 		14BB4E8E174BC39000C75F78 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BB4E8D174BC39000C75F78 /* CoreGraphics.framework */; };
@@ -30,25 +31,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14707ADF175B29E900A58D40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14707AE1175B29FF00A58D40 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14BB4E86174BC39000C75F78 /* PEPhotoCropEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PEPhotoCropEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14BB4E89174BC39000C75F78 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		14BB4E8B174BC39000C75F78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14BB4E8D174BC39000C75F78 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		14BB4EC6174BC57700C75F78 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "DemoApp/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
-		14BB4EC7174BC57700C75F78 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = "DemoApp/Default.png"; sourceTree = SOURCE_ROOT; };
+		14BB4EC7174BC57700C75F78 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = DemoApp/Default.png; sourceTree = SOURCE_ROOT; };
 		14BB4EC8174BC57700C75F78 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "DemoApp/Default@2x.png"; sourceTree = SOURCE_ROOT; };
-		14BB4ECD174BC59500C75F78 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "DemoApp/main.m"; sourceTree = SOURCE_ROOT; };
+		14BB4ECD174BC59500C75F78 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = DemoApp/main.m; sourceTree = SOURCE_ROOT; };
 		14BB4ECF174BC59E00C75F78 /* PEPhotoCropEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PEPhotoCropEditor-Info.plist"; path = "DemoApp/PEPhotoCropEditor-Info.plist"; sourceTree = SOURCE_ROOT; };
-		14BB4EDA174BC5D300C75F78 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "DemoApp/AppDelegate.h"; sourceTree = SOURCE_ROOT; };
-		14BB4EDB174BC5D300C75F78 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "DemoApp/AppDelegate.m"; sourceTree = SOURCE_ROOT; };
-		14BB4EDC174BC5D300C75F78 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = "DemoApp/ViewController.h"; sourceTree = SOURCE_ROOT; };
-		14BB4EDD174BC5D300C75F78 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = "DemoApp/ViewController.m"; sourceTree = SOURCE_ROOT; };
+		14BB4EDA174BC5D300C75F78 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = DemoApp/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		14BB4EDB174BC5D300C75F78 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = DemoApp/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		14BB4EDC174BC5D300C75F78 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = DemoApp/ViewController.h; sourceTree = SOURCE_ROOT; };
+		14BB4EDD174BC5D300C75F78 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = DemoApp/ViewController.m; sourceTree = SOURCE_ROOT; };
 		14BB4EE0174BC68700C75F78 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		14BB4EE2174BC68C00C75F78 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		14BB4EE4174BD6E600C75F78 /* PEPhotoCropEditor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PEPhotoCropEditor-Prefix.pch"; path = "DemoApp/PEPhotoCropEditor-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		14BB4EE6174BD70200C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "DemoApp/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
-		14BB4EE9174BD70E00C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "DemoApp/en.lproj/MainStoryboard_iPad.storyboard"; sourceTree = SOURCE_ROOT; };
-		14BB4EEB174BD70E00C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "DemoApp/en.lproj/MainStoryboard_iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
+		14BB4EE6174BD70200C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = DemoApp/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		14BB4EE9174BD70E00C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DemoApp/en.lproj/MainStoryboard_iPad.storyboard; sourceTree = SOURCE_ROOT; };
+		14BB4EEB174BD70E00C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DemoApp/en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		14BB4F07174BD79E00C75F78 /* PECropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PECropView.h; path = Lib/PECropView.h; sourceTree = SOURCE_ROOT; };
 		14BB4F08174BD79E00C75F78 /* PECropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PECropView.m; path = Lib/PECropView.m; sourceTree = SOURCE_ROOT; };
 		14BB4F0A174BD7B100C75F78 /* PECropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PECropViewController.h; path = Lib/PECropViewController.h; sourceTree = SOURCE_ROOT; };
@@ -135,6 +138,7 @@
 			children = (
 				14BB4F13174BDED300C75F78 /* PEPhotoCropEditorBorder.png */,
 				14BB4F14174BDED300C75F78 /* PEPhotoCropEditorBorder@2x.png */,
+				14707AE0175B29E900A58D40 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -158,7 +162,7 @@
 				14BB4EE8174BD70E00C75F78 /* MainStoryboard_iPad.storyboard */,
 				14BB4EEA174BD70E00C75F78 /* MainStoryboard_iPhone.storyboard */,
 			);
-			name = "DemoApp";
+			name = DemoApp;
 			sourceTree = "<group>";
 		};
 		14BB4F06174BD79000C75F78 /* Sources */ = {
@@ -212,6 +216,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
 			);
 			mainGroup = 14BB4E7D174BC39000C75F78;
 			productRefGroup = 14BB4E87174BC39000C75F78 /* Products */;
@@ -236,6 +241,7 @@
 				14BB4EED174BD70E00C75F78 /* MainStoryboard_iPhone.storyboard in Resources */,
 				14BB4F15174BDED300C75F78 /* PEPhotoCropEditorBorder.png in Resources */,
 				14BB4F16174BDED300C75F78 /* PEPhotoCropEditorBorder@2x.png in Resources */,
+				14707ADE175B29E900A58D40 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +265,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		14707AE0175B29E900A58D40 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14707ADF175B29E900A58D40 /* en */,
+				14707AE1175B29FF00A58D40 /* ja */,
+			);
+			name = Localizable.strings;
+			path = Resources;
+			sourceTree = SOURCE_ROOT;
+		};
 		14BB4EE5174BD70200C75F78 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

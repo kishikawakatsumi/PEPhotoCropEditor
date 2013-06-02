@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  PEPhotoCropEditor
+
+  Created by kishikawa katsumi on 2013/06/02.
+  Copyright (c) 2013 kishikawa katsumi. All rights reserved.
+*/
+
+"Constrain" = "縦横比の変更";
+
+"Original" = "オリジナル";
+"Square" = "スクエア";
+"3 x 2" = "2 x 3";
+"3 x 5" = "5 x 3";
+"4 x 3" = "3 x 4";
+"4 x 6" = "6 x 4";
+"5 x 7" = "7 x 5";
+"8 x 10" = "10 x 8";
+"16 x 9" = "9 x 16";

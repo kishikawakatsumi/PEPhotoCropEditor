@@ -14,5 +14,7 @@
 
 @property (nonatomic) UIImage *image;
 @property (nonatomic, readonly) UIImage *croppedImage;
+@property (nonatomic) CGFloat aspectRatio;
+@property (nonatomic) CGRect cropRect;
 
 @end
