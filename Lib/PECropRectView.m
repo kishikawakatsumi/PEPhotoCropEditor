@@ -104,7 +104,7 @@
     for (NSInteger i = 0; i < 3; i++) {
         if (self.showsGridMinor) {
             for (NSInteger j = 1; j < 3; j++) {
-                [[UIColor colorWithRed:1.0f green:1.0f blue:0.0f alpha:0.5f] set];
+                [[UIColor colorWithRed:1.0f green:1.0f blue:0.0f alpha:0.3f] set];
                 
                 UIRectFill(CGRectMake(roundf(width / 3 / 3 * j + width / 3 * i), 0.0f, 1.0f, roundf(height)));
                 UIRectFill(CGRectMake(0.0f, roundf(height / 3 / 3 * j + height / 3 * i), roundf(width), 1.0f));

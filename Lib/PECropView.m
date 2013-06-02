@@ -21,9 +21,10 @@ static const CGFloat MarginRight = MarginLeft;
 @property (nonatomic) UIImageView *imageView;
 
 @property (nonatomic) PECropRectView *cropRectView;
-
-@property (nonatomic) CALayer *overlayLayer;
-@property (nonatomic) CAShapeLayer *cropLayer;
+@property (nonatomic) UIView *topOverlayView;
+@property (nonatomic) UIView *leftOverlayView;
+@property (nonatomic) UIView *rightOverlayView;
+@property (nonatomic) UIView *bottomOverlayView;
 
 @property (nonatomic) CGRect insetRect;
 @property (nonatomic) CGRect editingRect;
@@ -63,18 +64,18 @@ static const CGFloat MarginRight = MarginLeft;
         self.cropRectView.delegate = self;
         [self addSubview:self.cropRectView];
         
-        self.overlayLayer = [CALayer layer];
-        self.overlayLayer.bounds = self.layer.bounds;
-        self.overlayLayer.position = self.layer.position;
-        self.overlayLayer.backgroundColor = [[UIColor blackColor] CGColor];
-        self.overlayLayer.opacity = 0.4f;
-        [self.layer addSublayer:self.overlayLayer];
-        
-        self.cropLayer = [CAShapeLayer layer];
-        self.cropLayer.bounds = self.overlayLayer.bounds;
-        self.cropLayer.position = self.overlayLayer.position;
-        self.cropLayer.fillRule = kCAFillRuleEvenOdd;
-        self.overlayLayer.mask = self.cropLayer;
+        self.topOverlayView = [[UIView alloc] init];
+        self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+        [self addSubview:self.topOverlayView];
+        self.leftOverlayView = [[UIView alloc] init];
+        self.leftOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+        [self addSubview:self.leftOverlayView];
+        self.rightOverlayView = [[UIView alloc] init];
+        self.rightOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+        [self addSubview:self.rightOverlayView];
+        self.bottomOverlayView = [[UIView alloc] init];
+        self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+        [self addSubview:self.bottomOverlayView];
     }
     
     return self;
@@ -84,9 +85,13 @@ static const CGFloat MarginRight = MarginLeft;
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    CGPoint locationInImageView = [self convertPoint:point toView:self.imageView];
+    UIView *hitView = [self.cropRectView hitTest:[self convertPoint:point toView:self.cropRectView] withEvent:event];
+    if (hitView) {
+        return hitView;
+    }
+    CGPoint locationInImageView = [self convertPoint:point toView:self.zoomingView];
     CGPoint zoomedPoint = CGPointMake(locationInImageView.x * self.scrollView.zoomScale, locationInImageView.y * self.scrollView.zoomScale);
-    if (!CGRectContainsPoint(CGRectInset(self.scrollView.frame, -22.0f, -22.0f), point) && CGRectContainsPoint(self.imageView.frame, zoomedPoint)) {
+    if (CGRectContainsPoint(self.zoomingView.frame, zoomedPoint)) {
         return self.scrollView;
     }
     
@@ -119,13 +124,7 @@ static const CGFloat MarginRight = MarginLeft;
     }
     
     if (!self.isResizing) {
-        self.overlayLayer.bounds = self.bounds;
-        self.overlayLayer.position = self.center;
-        self.cropLayer.bounds = self.overlayLayer.bounds;
-        self.cropLayer.position = self.overlayLayer.position;
-        
         [self layoutCropRectViewWithCropRect:self.scrollView.frame];
-        [self layoutCropLayerWithCropRect:self.scrollView.frame];
         
         if (self.interfaceOrientation != interfaceOrientation) {
             [self zoomToCropRect:self.scrollView.frame];
@@ -138,13 +137,27 @@ static const CGFloat MarginRight = MarginLeft;
 - (void)layoutCropRectViewWithCropRect:(CGRect)cropRect
 {
     self.cropRectView.frame = cropRect;
+    [self layoutOverlayViewsWithCropRect:cropRect];
 }
 
-- (void)layoutCropLayerWithCropRect:(CGRect)cropRect
+- (void)layoutOverlayViewsWithCropRect:(CGRect)cropRect
 {
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.cropLayer.bounds];
-    [path appendPath:[UIBezierPath bezierPathWithRect:cropRect]];
-    self.cropLayer.path = path.CGPath;
+    self.topOverlayView.frame = CGRectMake(0.0f,
+                                    0.0f,
+                                    CGRectGetWidth(self.bounds),
+                                    CGRectGetMinY(cropRect));
+    self.leftOverlayView.frame = CGRectMake(0.0f,
+                                     CGRectGetMinY(cropRect),
+                                     CGRectGetMinX(cropRect),
+                                     CGRectGetHeight(cropRect));
+    self.rightOverlayView.frame = CGRectMake(CGRectGetMaxX(cropRect),
+                                      CGRectGetMinY(cropRect),
+                                      CGRectGetWidth(self.bounds) - CGRectGetMaxX(cropRect),
+                                      CGRectGetHeight(cropRect));
+    self.bottomOverlayView.frame = CGRectMake(0.0f,
+                                       CGRectGetMaxY(cropRect),
+                                       CGRectGetWidth(self.bounds),
+                                       CGRectGetHeight(self.bounds) - CGRectGetMaxY(cropRect));
 }
 
 - (void)setupImageView
@@ -279,7 +292,6 @@ static const CGFloat MarginRight = MarginLeft;
     CGRect cropRect = [self cappedCropRectInImageRectWithCropRectView:cropRectView];
     
     [self layoutCropRectViewWithCropRect:cropRect];
-    [self layoutCropLayerWithCropRect:cropRect];
     
     [self automaticZoomIfEdgeTouched:cropRect];
 }
@@ -307,13 +319,6 @@ static const CGFloat MarginRight = MarginLeft;
     CGRect zoomRect = [self convertRect:cropRect toView:self.zoomingView];
     zoomRect.size.width = CGRectGetWidth(self.cropRect) / (self.scrollView.zoomScale * scale);
     zoomRect.size.height = CGRectGetHeight(self.cropRect) / (self.scrollView.zoomScale * scale);
-    
-    UIBezierPath *path = [UIBezierPath bezierPathWithRect:self.cropLayer.bounds];
-    [path appendPath:[UIBezierPath bezierPathWithRect:self.cropRect]];
-    self.cropLayer.path = path.CGPath;
-    
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
-    [self.cropLayer addAnimation:animation forKey:nil];
     
     [UIView animateWithDuration:0.25
                           delay:0.0
@@ -355,6 +360,12 @@ static const CGFloat MarginRight = MarginLeft;
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.zoomingView;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    CGPoint contentOffset = scrollView.contentOffset;
+    *targetContentOffset = contentOffset;
 }
 
 @end
