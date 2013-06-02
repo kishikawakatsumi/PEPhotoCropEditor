@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14707ADE175B29E900A58D40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14707AE0175B29E900A58D40 /* Localizable.strings */; };
+		14707AE7175B99D900A58D40 /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14707AE6175B99D800A58D40 /* PEPhotoCropEditor.bundle */; };
+		14707AEA175B9B6E00A58D40 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14707AEC175B9B6E00A58D40 /* Localizable.strings */; };
 		14BB4E8A174BC39000C75F78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BB4E89174BC39000C75F78 /* UIKit.framework */; };
 		14BB4E8C174BC39000C75F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BB4E8B174BC39000C75F78 /* Foundation.framework */; };
 		14BB4E8E174BC39000C75F78 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BB4E8D174BC39000C75F78 /* CoreGraphics.framework */; };
@@ -26,13 +27,12 @@
 		14BB4F0C174BD7B100C75F78 /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F0B174BD7B100C75F78 /* PECropViewController.m */; };
 		14BB4F11174BD7CC00C75F78 /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F0E174BD7CA00C75F78 /* PECropRectView.m */; };
 		14BB4F12174BD7CC00C75F78 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F10174BD7CB00C75F78 /* PEResizeControl.m */; };
-		14BB4F15174BDED300C75F78 /* PEPhotoCropEditorBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 14BB4F13174BDED300C75F78 /* PEPhotoCropEditorBorder.png */; };
-		14BB4F16174BDED300C75F78 /* PEPhotoCropEditorBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14BB4F14174BDED300C75F78 /* PEPhotoCropEditorBorder@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14707ADF175B29E900A58D40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		14707AE1175B29FF00A58D40 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14707AE6175B99D800A58D40 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PEPhotoCropEditor.bundle; path = Resources/PEPhotoCropEditor.bundle; sourceTree = SOURCE_ROOT; };
+		14707AEB175B9B6E00A58D40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		14707AED175B9B7000A58D40 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14BB4E86174BC39000C75F78 /* PEPhotoCropEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PEPhotoCropEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14BB4E89174BC39000C75F78 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		14BB4E8B174BC39000C75F78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,8 +60,6 @@
 		14BB4F0E174BD7CA00C75F78 /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PECropRectView.m; path = Lib/PECropRectView.m; sourceTree = SOURCE_ROOT; };
 		14BB4F0F174BD7CB00C75F78 /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEResizeControl.h; path = Lib/PEResizeControl.h; sourceTree = SOURCE_ROOT; };
 		14BB4F10174BD7CB00C75F78 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEResizeControl.m; path = Lib/PEResizeControl.m; sourceTree = SOURCE_ROOT; };
-		14BB4F13174BDED300C75F78 /* PEPhotoCropEditorBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PEPhotoCropEditorBorder.png; path = Resources/PEPhotoCropEditorBorder.png; sourceTree = SOURCE_ROOT; };
-		14BB4F14174BDED300C75F78 /* PEPhotoCropEditorBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PEPhotoCropEditorBorder@2x.png"; path = "Resources/PEPhotoCropEditorBorder@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +122,7 @@
 			children = (
 				14BB4ECF174BC59E00C75F78 /* PEPhotoCropEditor-Info.plist */,
 				14BB4EE5174BD70200C75F78 /* InfoPlist.strings */,
+				14707AEC175B9B6E00A58D40 /* Localizable.strings */,
 				14BB4EE4174BD6E600C75F78 /* PEPhotoCropEditor-Prefix.pch */,
 				14BB4ECD174BC59500C75F78 /* main.m */,
 				14BB4EC7174BC57700C75F78 /* Default.png */,
@@ -136,9 +135,7 @@
 		14BB4EAF174BC3DD00C75F78 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				14BB4F13174BDED300C75F78 /* PEPhotoCropEditorBorder.png */,
-				14BB4F14174BDED300C75F78 /* PEPhotoCropEditorBorder@2x.png */,
-				14707AE0175B29E900A58D40 /* Localizable.strings */,
+				14707AE6175B99D800A58D40 /* PEPhotoCropEditor.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -239,9 +236,8 @@
 				14BB4EE7174BD70200C75F78 /* InfoPlist.strings in Resources */,
 				14BB4EEC174BD70E00C75F78 /* MainStoryboard_iPad.storyboard in Resources */,
 				14BB4EED174BD70E00C75F78 /* MainStoryboard_iPhone.storyboard in Resources */,
-				14BB4F15174BDED300C75F78 /* PEPhotoCropEditorBorder.png in Resources */,
-				14BB4F16174BDED300C75F78 /* PEPhotoCropEditorBorder@2x.png in Resources */,
-				14707ADE175B29E900A58D40 /* Localizable.strings in Resources */,
+				14707AE7175B99D900A58D40 /* PEPhotoCropEditor.bundle in Resources */,
+				14707AEA175B9B6E00A58D40 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,14 +261,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		14707AE0175B29E900A58D40 /* Localizable.strings */ = {
+		14707AEC175B9B6E00A58D40 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				14707ADF175B29E900A58D40 /* en */,
-				14707AE1175B29FF00A58D40 /* ja */,
+				14707AEB175B9B6E00A58D40 /* en */,
+				14707AED175B9B7000A58D40 /* ja */,
 			);
 			name = Localizable.strings;
-			path = Resources;
 			sourceTree = SOURCE_ROOT;
 		};
 		14BB4EE5174BD70200C75F78 /* InfoPlist.strings */ = {

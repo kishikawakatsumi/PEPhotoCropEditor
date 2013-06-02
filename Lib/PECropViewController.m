@@ -18,6 +18,23 @@
 
 @implementation PECropViewController
 
++ (NSBundle *)bundle
+{
+    static NSBundle *bundle = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"PEPhotoCropEditor" withExtension:@"bundle"];
+        bundle = [[NSBundle alloc] initWithURL:bundleURL];
+    });
+    
+    return bundle;
+}
+
+static inline NSString *PELocalizedString(NSString *key, NSString *comment)
+{
+    return [[PECropViewController bundle] localizedStringForKey:key value:nil table:@"Localizable"];
+}
+
 - (void)loadView
 {
     UIView *contentView = [[UIView alloc] init];
@@ -43,7 +60,7 @@
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                    target:nil
                                                                                    action:nil];
-    UIBarButtonItem *constrainButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Constrain", nil)
+    UIBarButtonItem *constrainButton = [[UIBarButtonItem alloc] initWithTitle:PELocalizedString(@"Constrain", nil)
                                                                         style:UIBarButtonItemStyleBordered
                                                                        target:self
                                                                        action:@selector(constrain:)];
@@ -82,18 +99,18 @@
 {
     self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                    delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                          cancelButtonTitle:PELocalizedString(@"Cancel", nil)
                                      destructiveButtonTitle:nil
                                           otherButtonTitles:
-                        NSLocalizedString(@"Original", nil),
-                        NSLocalizedString(@"Square", nil),
-                        NSLocalizedString(@"3 x 2", nil),
-                        NSLocalizedString(@"3 x 5", nil),
-                        NSLocalizedString(@"4 x 3", nil),
-                        NSLocalizedString(@"4 x 6", nil),
-                        NSLocalizedString(@"5 x 7", nil),
-                        NSLocalizedString(@"8 x 10", nil),
-                        NSLocalizedString(@"16 x 9", nil), nil];
+                        PELocalizedString(@"Original", nil),
+                        PELocalizedString(@"Square", nil),
+                        PELocalizedString(@"3 x 2", nil),
+                        PELocalizedString(@"3 x 5", nil),
+                        PELocalizedString(@"4 x 3", nil),
+                        PELocalizedString(@"4 x 6", nil),
+                        PELocalizedString(@"5 x 7", nil),
+                        PELocalizedString(@"8 x 10", nil),
+                        PELocalizedString(@"16 x 9", nil), nil];
     [self.actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 

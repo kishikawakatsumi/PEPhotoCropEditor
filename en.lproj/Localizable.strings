@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  PEPhotoCropEditor
+
+  Created by kishikawa katsumi on 2013/06/03.
+  Copyright (c) 2013 kishikawa katsumi. All rights reserved.
+*/
+
+"Photo Album" = "Photo Album";
+"Camera" = "Camera";
+"Cancel" = "Cancel";

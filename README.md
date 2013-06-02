@@ -8,9 +8,14 @@ PEPhotoCropEditor is image cropping library for iOS, similar to the Photos.app U
 ## License
 MIT License
 
+## Features
+- Both iPhone/iPad available
+- Works fine any device orientations
+- Support pinch gesture to zoom
+- Support rotation gesture
+
 ## System requirements
 - iOS 5.0 or higher
-- Both iPhone/iPad supported
 
 ## Installation
 ### CocoaPods
