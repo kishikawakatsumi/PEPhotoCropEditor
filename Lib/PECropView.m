@@ -227,32 +227,6 @@ static const CGFloat MarginRight = MarginLeft;
     return rotatedImage;
 }
 
-- (CGRect)normalizeCropRect:(CGRect)cropRect inImage:(UIImage *)image {
-    UIImageOrientation imageOrientation = image.imageOrientation;
-    CGSize size = image.size;
-    CGFloat x = cropRect.origin.x;
-    CGFloat y = cropRect.origin.y;
-    CGFloat width = cropRect.size.width;
-    CGFloat height = cropRect.size.height;
-    
-    if (imageOrientation == UIImageOrientationRight || imageOrientation == UIImageOrientationRightMirrored) {
-        cropRect.origin.x = y;
-        cropRect.origin.y = size.width - cropRect.size.width - x;
-        cropRect.size.width = height;
-        cropRect.size.height = width;
-    } else if (imageOrientation == UIImageOrientationLeft || imageOrientation == UIImageOrientationLeftMirrored) {
-        cropRect.origin.x = size.height - cropRect.size.height - y;
-        cropRect.origin.y = x;
-        cropRect.size.width = height;
-        cropRect.size.height = width;
-    } else if (imageOrientation == UIImageOrientationDown || imageOrientation == UIImageOrientationDownMirrored) {
-        cropRect.origin.x = size.width - cropRect.size.width - x;;
-        cropRect.origin.y = size.height - cropRect.size.height - y;
-    }
-    
-    return cropRect;
-}
-
 - (CGRect)cappedCropRectInImageRectWithCropRectView:(PECropRectView *)cropRectView
 {
     CGRect cropRect = cropRectView.frame;
