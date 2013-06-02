@@ -14,9 +14,10 @@ static const CGFloat MarginBottom = MarginTop;
 static const CGFloat MarginLeft = 20.0f;
 static const CGFloat MarginRight = MarginLeft;
 
-@interface PECropView () <UIScrollViewDelegate>
+@interface PECropView () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic) UIScrollView *scrollView;
+@property (nonatomic) UIView *zoomingView;
 @property (nonatomic) UIImageView *imageView;
 
 @property (nonatomic) PECropRectView *cropRectView;
@@ -53,6 +54,10 @@ static const CGFloat MarginRight = MarginLeft;
         self.scrollView.bouncesZoom = NO;
         self.scrollView.clipsToBounds = NO;
         [self addSubview:self.scrollView];
+        
+        UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
+        rotationGestureRecognizer.delegate = self;
+        [self.scrollView addGestureRecognizer:rotationGestureRecognizer];
         
         self.cropRectView = [[PECropRectView alloc] init];
         self.cropRectView.delegate = self;
@@ -110,16 +115,7 @@ static const CGFloat MarginRight = MarginLeft;
             self.insetRect = CGRectInset(self.bounds, MarginLeft, MarginLeft);
         }
         
-        self.cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.insetRect);
-        
-        self.scrollView.frame = self.cropRect;
-        self.scrollView.contentSize = self.cropRect.size;
-        
-        self.imageView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
-        self.imageView.backgroundColor = [UIColor clearColor];
-        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        self.imageView.image = self.image;
-        [self.scrollView addSubview:self.imageView];
+        [self setupImageView];
     }
     
     if (!self.isResizing) {
@@ -151,6 +147,24 @@ static const CGFloat MarginRight = MarginLeft;
     self.cropLayer.path = path.CGPath;
 }
 
+- (void)setupImageView
+{
+    self.cropRect = AVMakeRectWithAspectRatioInsideRect(self.image.size, self.insetRect);
+    
+    self.scrollView.frame = self.cropRect;
+    self.scrollView.contentSize = self.cropRect.size;
+    
+    self.zoomingView = [[UIView alloc] initWithFrame:self.scrollView.bounds];
+    self.zoomingView.backgroundColor = [UIColor clearColor];
+    [self.scrollView addSubview:self.zoomingView];
+    
+    self.imageView = [[UIImageView alloc] initWithFrame:self.zoomingView.bounds];
+    self.imageView.backgroundColor = [UIColor clearColor];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.imageView.image = self.image;
+    [self.zoomingView addSubview:self.imageView];
+}
+
 #pragma mark -
 
 - (void)setImage:(UIImage *)image
@@ -160,12 +174,16 @@ static const CGFloat MarginRight = MarginLeft;
     [self.imageView removeFromSuperview];
     self.imageView = nil;
     
+    [self.zoomingView removeFromSuperview];
+    self.zoomingView = nil;
+    
     [self setNeedsLayout];
 }
 
+
 - (UIImage *)croppedImage
 {
-    CGRect cropRect = [self convertRect:self.scrollView.frame toView:self.imageView];
+    CGRect cropRect = [self convertRect:self.scrollView.frame toView:self.zoomingView];
     CGSize size = self.image.size;
     
     CGFloat ratio = 1.0f;
@@ -181,16 +199,37 @@ static const CGFloat MarginRight = MarginLeft;
                                        cropRect.size.width / ratio,
                                        cropRect.size.height / ratio);
     
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(self.image.CGImage, [self normalizeCropRect:zoomedCropRect]);
-    UIImage *image = [UIImage imageWithCGImage:croppedImage scale:1.0f orientation:self.image.imageOrientation];
+    UIImage *rotatedImage = [self rotatedImageWithImage:self.image transform:self.imageView.transform];
+    
+    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, zoomedCropRect);
+    UIImage *image = [UIImage imageWithCGImage:croppedImage scale:1.0f orientation:rotatedImage.imageOrientation];
     CGImageRelease(croppedImage);
     
     return image;
 }
 
-- (CGRect)normalizeCropRect:(CGRect)cropRect {
-    UIImageOrientation imageOrientation = self.image.imageOrientation;
-    CGSize size = self.image.size;
+- (UIImage *)rotatedImageWithImage:(UIImage *)image transform:(CGAffineTransform)transform
+{
+    CGSize size = image.size;
+    
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextTranslateCTM(context, size.width / 2, size.height / 2);
+    CGContextConcatCTM(context, transform);
+    CGContextTranslateCTM(context, size.width / -2, size.height / -2);
+    [image drawInRect:CGRectMake(0.0f, 0.0f, size.width, size.height)];
+    
+    UIImage *rotatedImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return rotatedImage;
+}
+
+- (CGRect)normalizeCropRect:(CGRect)cropRect inImage:(UIImage *)image {
+    UIImageOrientation imageOrientation = image.imageOrientation;
+    CGSize size = image.size;
     CGFloat x = cropRect.origin.x;
     CGFloat y = cropRect.origin.y;
     CGFloat width = cropRect.size.width;
@@ -219,19 +258,19 @@ static const CGFloat MarginRight = MarginLeft;
     CGRect cropRect = cropRectView.frame;
     
     CGRect rect = [self convertRect:cropRect toView:self.scrollView];
-    if (CGRectGetMinX(rect) < CGRectGetMinX(self.imageView.frame)) {
-        cropRect.origin.x = CGRectGetMinX([self.scrollView convertRect:self.imageView.frame toView:self]);
+    if (CGRectGetMinX(rect) < CGRectGetMinX(self.zoomingView.frame)) {
+        cropRect.origin.x = CGRectGetMinX([self.scrollView convertRect:self.zoomingView.frame toView:self]);
         cropRect.size.width = CGRectGetMaxX(rect);
     }
-    if (CGRectGetMinY(rect) < CGRectGetMinY(self.imageView.frame)) {
-        cropRect.origin.y = CGRectGetMinY([self.scrollView convertRect:self.imageView.frame toView:self]);
+    if (CGRectGetMinY(rect) < CGRectGetMinY(self.zoomingView.frame)) {
+        cropRect.origin.y = CGRectGetMinY([self.scrollView convertRect:self.zoomingView.frame toView:self]);
         cropRect.size.height = CGRectGetMaxY(rect);
     }
-    if (CGRectGetMaxX(rect) > CGRectGetMaxX(self.imageView.frame)) {
-        cropRect.size.width = CGRectGetMaxX([self.scrollView convertRect:self.imageView.frame toView:self]) - CGRectGetMinX(cropRect);
+    if (CGRectGetMaxX(rect) > CGRectGetMaxX(self.zoomingView.frame)) {
+        cropRect.size.width = CGRectGetMaxX([self.scrollView convertRect:self.zoomingView.frame toView:self]) - CGRectGetMinX(cropRect);
     }
-    if (CGRectGetMaxY(rect) > CGRectGetMaxY(self.imageView.frame)) {
-        cropRect.size.height = CGRectGetMaxY([self.scrollView convertRect:self.imageView.frame toView:self]) - CGRectGetMinY(cropRect);
+    if (CGRectGetMaxY(rect) > CGRectGetMaxY(self.zoomingView.frame)) {
+        cropRect.size.height = CGRectGetMaxY([self.scrollView convertRect:self.zoomingView.frame toView:self]) - CGRectGetMinY(cropRect);
     }
     
     return cropRect;
@@ -291,7 +330,7 @@ static const CGFloat MarginRight = MarginLeft;
                                scaledWidth,
                                scaledHeight);
     
-    CGRect zoomRect = [self convertRect:cropRect toView:self.imageView];
+    CGRect zoomRect = [self convertRect:cropRect toView:self.zoomingView];
     zoomRect.size.width = CGRectGetWidth(self.cropRect) / (self.scrollView.zoomScale * scale);
     zoomRect.size.height = CGRectGetHeight(self.cropRect) / (self.scrollView.zoomScale * scale);
     
@@ -317,9 +356,31 @@ static const CGFloat MarginRight = MarginLeft;
 
 #pragma mark -
 
+- (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer
+{
+    CGFloat rotation = gestureRecognizer.rotation;
+    
+    CGAffineTransform transform = CGAffineTransformRotate(self.imageView.transform, rotation);
+    self.imageView.transform = transform;
+    gestureRecognizer.rotation = 0.0f;
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        self.cropRectView.showsGridMinor = YES;
+    } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded ||
+               gestureRecognizer.state == UIGestureRecognizerStateCancelled ||
+               gestureRecognizer.state == UIGestureRecognizerStateFailed) {
+        self.cropRectView.showsGridMinor = NO;
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return self.imageView;
+    return self.zoomingView;
 }
 
 @end

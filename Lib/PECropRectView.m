@@ -34,6 +34,9 @@
         self.backgroundColor = [UIColor clearColor];
         self.contentMode = UIViewContentModeRedraw;
         
+        self.showsGridMajor = YES;
+        self.showsGridMinor = NO;
+        
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectInset(self.bounds, -2.0f, -2.0f)];
         imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         imageView.image = [[UIImage imageNamed:@"PEPhotoCropEditorBorder"] resizableImageWithCapInsets:UIEdgeInsetsMake(23.0f, 23.0f, 23.0f, 23.0f)];
@@ -75,6 +78,8 @@
     return self;
 }
 
+#pragma mark -
+
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
     NSArray *subviews = self.subviews;
@@ -96,12 +101,24 @@
     CGFloat width = CGRectGetWidth(self.bounds);
     CGFloat height = CGRectGetHeight(self.bounds);
     
-    UIColor *lineColor = [UIColor whiteColor];
-    [lineColor set];
-    
-    for (NSInteger i = 1; i < 3; i++) {
-        UIRectFill(CGRectMake(0.0f, roundf(height / 3 * i), roundf(width), 1.0f));
-        UIRectFill(CGRectMake(roundf(width / 3 * i), 0.0f, 1.0f, roundf(height)));
+    for (NSInteger i = 0; i < 3; i++) {
+        if (self.showsGridMinor) {
+            for (NSInteger j = 1; j < 3; j++) {
+                [[UIColor colorWithRed:1.0f green:1.0f blue:0.0f alpha:0.5f] set];
+                
+                UIRectFill(CGRectMake(roundf(width / 3 / 3 * j + width / 3 * i), 0.0f, 1.0f, roundf(height)));
+                UIRectFill(CGRectMake(0.0f, roundf(height / 3 / 3 * j + height / 3 * i), roundf(width), 1.0f));
+            }
+        }
+        
+        if (self.showsGridMajor) {
+            if (i > 0) {
+                [[UIColor whiteColor] set];
+                
+                UIRectFill(CGRectMake(roundf(width / 3 * i), 0.0f, 1.0f, roundf(height)));
+                UIRectFill(CGRectMake(0.0f, roundf(height / 3 * i), roundf(width), 1.0f));
+            }
+        }
     }
 }
 
@@ -118,6 +135,22 @@
     self.bottomEdgeView.frame = (CGRect){CGRectGetMaxX(self.bottomLeftCornerView.frame), CGRectGetMinY(self.bottomLeftCornerView.frame), CGRectGetMinX(self.bottomRightCornerView.frame) - CGRectGetMaxX(self.bottomLeftCornerView.frame), CGRectGetHeight(self.bottomEdgeView.bounds)};
     self.rightEdgeView.frame = (CGRect){CGRectGetWidth(self.bounds) - CGRectGetWidth(self.rightEdgeView.bounds) / 2, CGRectGetMaxY(self.topRightCornerView.frame), CGRectGetWidth(self.rightEdgeView.bounds), CGRectGetMinY(self.bottomRightCornerView.frame) - CGRectGetMaxY(self.topRightCornerView.frame)};
 }
+
+#pragma mark -
+
+- (void)setShowsGridMajor:(BOOL)showsGridMajor
+{
+    _showsGridMajor = showsGridMajor;
+    [self setNeedsDisplay];
+}
+
+- (void)setShowsGridMinor:(BOOL)showsGridMinor
+{
+    _showsGridMinor = showsGridMinor;
+    [self setNeedsDisplay];
+}
+
+#pragma mark -
 
 - (void)resizeConrolViewDidBeginResizing:(PEResizeControl *)resizeConrolView
 {
