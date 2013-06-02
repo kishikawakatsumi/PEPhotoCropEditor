@@ -226,16 +226,16 @@
                           CGRectGetHeight(self.initialRect) + resizeControlView.translation.y);
     }
     
-    CGFloat maxWidth = CGRectGetWidth(self.leftEdgeView.bounds) + CGRectGetWidth(self.rightEdgeView.bounds);
-    if (CGRectGetWidth(rect) < maxWidth) {
-        rect.origin.x = CGRectGetMaxX(self.frame) - maxWidth;
-        rect.size.width = maxWidth;
+    CGFloat minWidth = CGRectGetWidth(self.leftEdgeView.bounds) + CGRectGetWidth(self.rightEdgeView.bounds);
+    if (CGRectGetWidth(rect) < minWidth) {
+        rect.origin.x = CGRectGetMaxX(self.frame) - minWidth;
+        rect.size.width = minWidth;
     }
     
-    CGFloat maxHeight = CGRectGetHeight(self.topEdgeView.bounds) + CGRectGetHeight(self.bottomEdgeView.bounds);
-    if (CGRectGetHeight(rect) < maxHeight) {
-        rect.origin.y = CGRectGetMaxY(self.frame) - maxHeight;
-        rect.size.height = maxHeight;
+    CGFloat minHeight = CGRectGetHeight(self.topEdgeView.bounds) + CGRectGetHeight(self.bottomEdgeView.bounds);
+    if (CGRectGetHeight(rect) < minHeight) {
+        rect.origin.y = CGRectGetMaxY(self.frame) - minHeight;
+        rect.size.height = minHeight;
     }
     
     return rect;
