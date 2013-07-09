@@ -11,7 +11,7 @@
 
 @interface PEResizeControl : UIView
 
-@property (weak, nonatomic) id delegate;
+@property (nonatomic, weak) id delegate;
 @property (nonatomic, readonly) CGPoint translation;
 
 @end

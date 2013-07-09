@@ -10,7 +10,7 @@
 
 @interface PECropViewController : UIViewController
 
-@property (nonatomic) id delegate;
+@property (nonatomic, weak) id delegate;
 @property (nonatomic) UIImage *image;
 
 @end

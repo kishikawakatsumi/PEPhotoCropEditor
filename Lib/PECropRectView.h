@@ -10,7 +10,7 @@
 
 @interface PECropRectView : UIView
 
-@property (nonatomic) id delegate;
+@property (nonatomic, weak) id delegate;
 @property (nonatomic) BOOL showsGridMajor;
 @property (nonatomic) BOOL showsGridMinor;
 
