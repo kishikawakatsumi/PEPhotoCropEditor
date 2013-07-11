@@ -40,47 +40,62 @@ static const CGFloat MarginRight = MarginLeft;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.backgroundColor = [UIColor clearColor];
-        
-        self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-        self.scrollView.delegate = self;
-        self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-        self.scrollView.backgroundColor = [UIColor clearColor];
-        self.scrollView.maximumZoomScale = 20.0f;
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-        self.scrollView.showsVerticalScrollIndicator = NO;
-        self.scrollView.bounces = NO;
-        self.scrollView.bouncesZoom = NO;
-        self.scrollView.clipsToBounds = NO;
-        [self addSubview:self.scrollView];
-        
-        UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
-        rotationGestureRecognizer.delegate = self;
-        [self.scrollView addGestureRecognizer:rotationGestureRecognizer];
-        
-        self.cropRectView = [[PECropRectView alloc] init];
-        self.cropRectView.delegate = self;
-        [self addSubview:self.cropRectView];
-        
-        self.topOverlayView = [[UIView alloc] init];
-        self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-        [self addSubview:self.topOverlayView];
-        
-        self.leftOverlayView = [[UIView alloc] init];
-        self.leftOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-        [self addSubview:self.leftOverlayView];
-        
-        self.rightOverlayView = [[UIView alloc] init];
-        self.rightOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-        [self addSubview:self.rightOverlayView];
-        
-        self.bottomOverlayView = [[UIView alloc] init];
-        self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-        [self addSubview:self.bottomOverlayView];
+        [self commonInit];
     }
     
     return self;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        [self commonInit];
+    }
+    return self;
+}
+
+-(void)commonInit
+{
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.backgroundColor = [UIColor clearColor];
+    
+    self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    self.scrollView.delegate = self;
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.maximumZoomScale = 20.0f;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.bounces = NO;
+    self.scrollView.bouncesZoom = NO;
+    self.scrollView.clipsToBounds = NO;
+    [self addSubview:self.scrollView];
+    
+    UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
+    rotationGestureRecognizer.delegate = self;
+    [self.scrollView addGestureRecognizer:rotationGestureRecognizer];
+    
+    self.cropRectView = [[PECropRectView alloc] init];
+    self.cropRectView.delegate = self;
+    [self addSubview:self.cropRectView];
+    
+    self.topOverlayView = [[UIView alloc] init];
+    self.topOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+    [self addSubview:self.topOverlayView];
+    
+    self.leftOverlayView = [[UIView alloc] init];
+    self.leftOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+    [self addSubview:self.leftOverlayView];
+    
+    self.rightOverlayView = [[UIView alloc] init];
+    self.rightOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+    [self addSubview:self.rightOverlayView];
+    
+    self.bottomOverlayView = [[UIView alloc] init];
+    self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+    [self addSubview:self.bottomOverlayView];
 }
 
 #pragma mark -
