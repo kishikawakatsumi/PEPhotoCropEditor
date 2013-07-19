@@ -13,6 +13,11 @@
 @property (nonatomic, weak) id delegate;
 @property (nonatomic) UIImage *image;
 
+@property (nonatomic) BOOL keepingCropAspectRatio;
+@property (nonatomic) CGFloat cropAspectRatio;
+
+@property (nonatomic) CGRect cropRect;
+
 @end
 
 @protocol PECropViewControllerDelegate <NSObject>

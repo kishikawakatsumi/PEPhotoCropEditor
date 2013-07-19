@@ -54,3 +54,12 @@ self.cropView = [[PECropView alloc] initWithFrame:contentView.bounds];
 ```objective-c
 UIImage *croppedImage = self.cropView.croppedImage;
 ```
+
+**Keep crop aspect ratio while resizing**
+```objective-c
+controller.keepingCropAspectRatio = YES;
+```
+
+```objective-c
+self.cropView.keepingCropAspectRatio = YES;
+```

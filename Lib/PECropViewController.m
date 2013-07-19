@@ -70,6 +70,20 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     self.cropView.image = self.image;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.cropAspectRatio != 0) {
+        self.cropAspectRatio = self.cropAspectRatio;
+    }
+    if (!CGRectEqualToRect(self.cropRect, CGRectZero)) {
+        self.cropRect = self.cropRect;
+    }
+    
+    self.keepingCropAspectRatio = self.keepingCropAspectRatio;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
@@ -93,6 +107,32 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     if ([self.delegate respondsToSelector:@selector(cropViewController:didFinishCroppingImage:)]) {
         [self.delegate cropViewController:self didFinishCroppingImage:self.cropView.croppedImage];
     }
+}
+
+- (void)setKeepingCropAspectRatio:(BOOL)keepingCropAspectRatio
+{
+    _keepingCropAspectRatio = keepingCropAspectRatio;
+    self.cropView.keepingCropAspectRatio = self.keepingCropAspectRatio;
+}
+
+- (void)setCropAspectRatio:(CGFloat)cropAspectRatio
+{
+    _cropAspectRatio = cropAspectRatio;
+    self.cropView.cropAspectRatio = self.cropAspectRatio;
+}
+
+- (void)setCropRect:(CGRect)cropRect
+{
+    _cropRect = cropRect;
+    
+    CGRect cropViewCropRect = self.cropView.cropRect;
+    cropViewCropRect.origin.x += cropRect.origin.x;
+    cropViewCropRect.origin.y += cropRect.origin.y;
+    
+    CGSize size = CGSizeMake(fminf(CGRectGetMaxX(cropViewCropRect) - CGRectGetMinX(cropViewCropRect), CGRectGetWidth(cropRect)),
+                             fminf(CGRectGetMaxY(cropViewCropRect) - CGRectGetMinY(cropViewCropRect), CGRectGetHeight(cropRect)));
+    cropViewCropRect.size = size;
+    self.cropView.cropRect = cropViewCropRect;
 }
 
 - (void)constrain:(id)sender
@@ -131,11 +171,11 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
         }
         self.cropView.cropRect = cropRect;
     } else if (buttonIndex == 1) {
-        self.cropView.aspectRatio = 1.0f;
+        self.cropView.cropAspectRatio = 1.0f;
     } else if (buttonIndex == 2) {
-        self.cropView.aspectRatio = 2.0f / 3.0f;
+        self.cropView.cropAspectRatio = 2.0f / 3.0f;
     } else if (buttonIndex == 3) {
-        self.cropView.aspectRatio = 3.0f / 5.0f;
+        self.cropView.cropAspectRatio = 3.0f / 5.0f;
     } else if (buttonIndex == 4) {
         CGFloat ratio = 3.0f / 4.0f;
         CGRect cropRect = self.cropView.cropRect;
@@ -143,11 +183,11 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
         cropRect.size = CGSizeMake(width, width * ratio);
         self.cropView.cropRect = cropRect;
     } else if (buttonIndex == 5) {
-        self.cropView.aspectRatio = 4.0f / 6.0f;
+        self.cropView.cropAspectRatio = 4.0f / 6.0f;
     } else if (buttonIndex == 6) {
-        self.cropView.aspectRatio = 5.0f / 7.0f;
+        self.cropView.cropAspectRatio = 5.0f / 7.0f;
     } else if (buttonIndex == 7) {
-        self.cropView.aspectRatio = 8.0f / 10.0f;
+        self.cropView.cropAspectRatio = 8.0f / 10.0f;
     } else if (buttonIndex == 8) {
         CGFloat ratio = 9.0f / 16.0f;
         CGRect cropRect = self.cropView.cropRect;

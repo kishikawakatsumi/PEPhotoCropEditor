@@ -14,6 +14,8 @@
 @property (nonatomic) BOOL showsGridMajor;
 @property (nonatomic) BOOL showsGridMinor;
 
+@property (nonatomic) BOOL keepingAspectRatio;
+
 @end
 
 @protocol PECropRectViewDelegate <NSObject>

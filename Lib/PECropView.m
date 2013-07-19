@@ -210,21 +210,35 @@ static const CGFloat MarginRight = MarginLeft;
     [self setNeedsLayout];
 }
 
-- (void)setAspectRatio:(CGFloat)aspectRatio
+- (void)setKeepingCropAspectRatio:(BOOL)keepingCropAspectRatio
+{
+    _keepingCropAspectRatio = keepingCropAspectRatio;
+    self.cropRectView.keepingAspectRatio = self.keepingCropAspectRatio;
+}
+
+- (void)setCropAspectRatio:(CGFloat)aspectRatio
 {
     CGRect cropRect = self.scrollView.frame;
     CGFloat width = CGRectGetWidth(cropRect);
     CGFloat height = CGRectGetHeight(cropRect);
     if (width < height) {
         width = height * aspectRatio;
+        if (width > CGRectGetWidth(self.imageView.bounds)) {
+            width = CGRectGetWidth(cropRect);
+            height = width * aspectRatio;
+        }
     } else {
         height = width * aspectRatio;
+        if (height > CGRectGetHeight(self.imageView.bounds)) {
+            height = CGRectGetHeight(cropRect);
+            width = height * aspectRatio;
+        }
     }
     cropRect.size = CGSizeMake(width, height);
     [self zoomToCropRect:cropRect];
 }
 
-- (CGFloat)aspectRatio
+- (CGFloat)cropAspectRatio
 {
     CGRect cropRect = self.scrollView.frame;
     CGFloat width = CGRectGetWidth(cropRect);
