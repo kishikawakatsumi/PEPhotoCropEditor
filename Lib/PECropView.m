@@ -8,6 +8,7 @@
 
 #import "PECropView.h"
 #import "PECropRectView.h"
+#import "UIImage+PECrop.h"
 
 static const CGFloat MarginTop = 37.0f;
 static const CGFloat MarginBottom = MarginTop;
@@ -258,6 +259,11 @@ static const CGFloat MarginRight = MarginLeft;
 
 - (UIImage *)croppedImage
 {
+    return [self.image rotatedImageWithtransform:self.rotation croppedToRect:self.zoomedCropRect];
+}
+
+- (CGRect)zoomedCropRect
+{
     CGRect cropRect = [self convertRect:self.scrollView.frame toView:self.zoomingView];
     CGSize size = self.image.size;
     
@@ -274,32 +280,12 @@ static const CGFloat MarginRight = MarginLeft;
                                        cropRect.size.width / ratio,
                                        cropRect.size.height / ratio);
     
-    UIImage *rotatedImage = [self rotatedImageWithImage:self.image transform:self.imageView.transform];
-    
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, zoomedCropRect);
-    UIImage *image = [UIImage imageWithCGImage:croppedImage scale:1.0f orientation:rotatedImage.imageOrientation];
-    CGImageRelease(croppedImage);
-    
-    return image;
+    return zoomedCropRect;
 }
 
-- (UIImage *)rotatedImageWithImage:(UIImage *)image transform:(CGAffineTransform)transform
+- (CGAffineTransform)rotation
 {
-    CGSize size = image.size;
-    
-    UIGraphicsBeginImageContext(size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextTranslateCTM(context, size.width / 2, size.height / 2);
-    CGContextConcatCTM(context, transform);
-    CGContextTranslateCTM(context, size.width / -2, size.height / -2);
-    [image drawInRect:CGRectMake(0.0f, 0.0f, size.width, size.height)];
-    
-    UIImage *rotatedImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return rotatedImage;
+    return self.imageView.transform;
 }
 
 - (CGRect)cappedCropRectInImageRectWithCropRectView:(PECropRectView *)cropRectView
