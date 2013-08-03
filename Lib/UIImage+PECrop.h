@@ -14,4 +14,3 @@
                          croppedToRect:(CGRect)rect;
 
 @end
-
