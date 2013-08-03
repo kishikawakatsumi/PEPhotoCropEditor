@@ -179,7 +179,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     } else if (buttonIndex == 4) {
         CGFloat ratio = 3.0f / 4.0f;
         CGRect cropRect = self.cropView.cropRect;
-        CGFloat width = CGRectGetHeight(cropRect);
+        CGFloat width = CGRectGetWidth(cropRect);
         cropRect.size = CGSizeMake(width, width * ratio);
         self.cropView.cropRect = cropRect;
     } else if (buttonIndex == 5) {
@@ -191,7 +191,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     } else if (buttonIndex == 8) {
         CGFloat ratio = 9.0f / 16.0f;
         CGRect cropRect = self.cropView.cropRect;
-        CGFloat width = CGRectGetHeight(cropRect);
+        CGFloat width = CGRectGetWidth(cropRect);
         cropRect.size = CGSizeMake(width, width * ratio);
         self.cropView.cropRect = cropRect;
     }
