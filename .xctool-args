@@ -1,0 +1,7 @@
+[
+  "-project", "PEPhotoCropEditor.xcodeproj",
+  "-scheme", "PEPhotoCropEditor",
+  "-configuration", "Debug",
+  "-sdk", "iphonesimulator",
+  "-arch", "i386"
+]
