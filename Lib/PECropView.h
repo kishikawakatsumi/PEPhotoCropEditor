@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) UIImage *croppedImage;
 @property (nonatomic, readonly) CGRect zoomedCropRect;
 @property (nonatomic, readonly) CGAffineTransform rotation;
+@property (nonatomic, readonly) BOOL userHasModifiedCropArea;
 
 @property (nonatomic) BOOL keepingCropAspectRatio;
 @property (nonatomic) CGFloat cropAspectRatio;
