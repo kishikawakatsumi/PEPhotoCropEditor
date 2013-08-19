@@ -283,6 +283,14 @@ static const CGFloat MarginRight = MarginLeft;
     return zoomedCropRect;
 }
 
+- (BOOL)userHasModifiedCropArea
+{
+    CGRect zoomedCropRect = CGRectIntegral(self.zoomedCropRect);
+    return (!CGPointEqualToPoint(zoomedCropRect.origin, CGPointZero) ||
+            !CGSizeEqualToSize(zoomedCropRect.size, self.image.size) ||
+            !CGAffineTransformEqualToTransform(self.rotation, CGAffineTransformIdentity));
+}
+
 - (CGAffineTransform)rotation
 {
     return self.imageView.transform;
