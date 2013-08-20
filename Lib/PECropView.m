@@ -303,17 +303,25 @@ static const CGFloat MarginRight = MarginLeft;
     CGRect rect = [self convertRect:cropRect toView:self.scrollView];
     if (CGRectGetMinX(rect) < CGRectGetMinX(self.zoomingView.frame)) {
         cropRect.origin.x = CGRectGetMinX([self.scrollView convertRect:self.zoomingView.frame toView:self]);
-        cropRect.size.width = CGRectGetMaxX(rect);
+        CGFloat cappedWidth = CGRectGetMaxX(rect);
+        cropRect.size = CGSizeMake(cappedWidth,
+                                   !self.keepingCropAspectRatio ? cropRect.size.height : cropRect.size.height * (cappedWidth/cropRect.size.width));
     }
     if (CGRectGetMinY(rect) < CGRectGetMinY(self.zoomingView.frame)) {
         cropRect.origin.y = CGRectGetMinY([self.scrollView convertRect:self.zoomingView.frame toView:self]);
-        cropRect.size.height = CGRectGetMaxY(rect);
+        CGFloat cappedHeight =  CGRectGetMaxY(rect);
+        cropRect.size = CGSizeMake(!self.keepingCropAspectRatio ? cropRect.size.width : cropRect.size.width * (cappedHeight / cropRect.size.height),
+                                   cappedHeight);
     }
     if (CGRectGetMaxX(rect) > CGRectGetMaxX(self.zoomingView.frame)) {
-        cropRect.size.width = CGRectGetMaxX([self.scrollView convertRect:self.zoomingView.frame toView:self]) - CGRectGetMinX(cropRect);
+        CGFloat cappedWidth = CGRectGetMaxX([self.scrollView convertRect:self.zoomingView.frame toView:self]) - CGRectGetMinX(cropRect);
+        cropRect.size = CGSizeMake(cappedWidth,
+                                   !self.keepingCropAspectRatio ? cropRect.size.height : cropRect.size.height * (cappedWidth/cropRect.size.width));
     }
     if (CGRectGetMaxY(rect) > CGRectGetMaxY(self.zoomingView.frame)) {
-        cropRect.size.height = CGRectGetMaxY([self.scrollView convertRect:self.zoomingView.frame toView:self]) - CGRectGetMinY(cropRect);
+        CGFloat cappedHeight =  CGRectGetMaxY([self.scrollView convertRect:self.zoomingView.frame toView:self]) - CGRectGetMinY(cropRect);
+        cropRect.size = CGSizeMake(!self.keepingCropAspectRatio ? cropRect.size.width : cropRect.size.width * (cappedHeight / cropRect.size.height),
+                                   cappedHeight);
     }
     
     return cropRect;
