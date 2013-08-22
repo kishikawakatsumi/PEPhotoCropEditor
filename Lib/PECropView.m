@@ -103,6 +103,10 @@ static const CGFloat MarginRight = MarginLeft;
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
+    if (!self.userInteractionEnabled) {
+        return nil;
+    }
+    
     UIView *hitView = [self.cropRectView hitTest:[self convertPoint:point toView:self.cropRectView] withEvent:event];
     if (hitView) {
         return hitView;
