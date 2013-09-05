@@ -226,14 +226,14 @@ static const CGFloat MarginRight = MarginLeft;
     CGRect cropRect = self.scrollView.frame;
     CGFloat width = CGRectGetWidth(cropRect);
     CGFloat height = CGRectGetHeight(cropRect);
-    if (width < height) {
+    if (aspectRatio <= 1.0f) {
         width = height * aspectRatio;
         if (width > CGRectGetWidth(self.imageView.bounds)) {
             width = CGRectGetWidth(cropRect);
-            height = width * aspectRatio;
+            height = width / aspectRatio;
         }
     } else {
-        height = width * aspectRatio;
+        height = width / aspectRatio;
         if (height > CGRectGetHeight(self.imageView.bounds)) {
             height = CGRectGetHeight(cropRect);
             width = height * aspectRatio;
