@@ -23,4 +23,7 @@
 
 @property (nonatomic) CGRect cropRect;
 
+@property (nonatomic) CGFloat rotationAngle;
+- (void)setRotationAngle:(CGFloat)rotationAngle snap:(BOOL)snap;
+
 @end
