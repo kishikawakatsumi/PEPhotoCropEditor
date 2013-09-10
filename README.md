@@ -1,9 +1,9 @@
 PEPhotoCropEditor
 =================
 
-![version](http://cocoapod-badges.herokuapp.com/v/PEPhotoCropEditor/badge.svg)
-![platform](http://cocoapod-badges.herokuapp.com/p/PEPhotoCropEditor/badge.svg)
-[![Build Status](https://travis-ci.org/kishikawakatsumi/PEPhotoCropEditor.png?branch=master)](https://travis-ci.org/kishikawakatsumi/PEPhotoCropEditor)
+![version](http://cocoapod-badges.herokuapp.com/v/PEPhotoCropEditor/badge.svg)&nbsp;
+![platform](http://cocoapod-badges.herokuapp.com/p/PEPhotoCropEditor/badge.svg)&nbsp;
+[![Build Status](https://travis-ci.org/kishikawakatsumi/PEPhotoCropEditor.png?branch=master)](https://travis-ci.org/kishikawakatsumi/PEPhotoCropEditor)&nbsp;
 [![Coverage Status](https://coveralls.io/repos/kishikawakatsumi/PEPhotoCropEditor/badge.png?branch=master)](https://coveralls.io/r/kishikawakatsumi/PEPhotoCropEditor?branch=master)
 
 
