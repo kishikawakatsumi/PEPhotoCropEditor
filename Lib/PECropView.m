@@ -47,7 +47,7 @@ static const CGFloat MarginRight = MarginLeft;
     return self;
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self)
@@ -57,7 +57,7 @@ static const CGFloat MarginRight = MarginLeft;
     return self;
 }
 
--(void)commonInit
+- (void)commonInit
 {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.backgroundColor = [UIColor clearColor];
