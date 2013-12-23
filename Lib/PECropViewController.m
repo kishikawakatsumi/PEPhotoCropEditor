@@ -50,6 +50,12 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 {
     [super viewDidLoad];
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+#endif
+
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                           target:self
                                                                                           action:@selector(cancel:)];
