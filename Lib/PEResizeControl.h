@@ -9,17 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+@protocol PEResizeControlViewDelegate;
+
 @interface PEResizeControl : UIView
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<PEResizeControlViewDelegate> delegate;
 @property (nonatomic, readonly) CGPoint translation;
 
 @end
 
-@protocol PEResizeConrolViewDelegate <NSObject>
+@protocol PEResizeControlViewDelegate <NSObject>
 
-- (void)resizeConrolViewDidBeginResizing:(PEResizeControl *)resizeConrolView;
-- (void)resizeConrolViewDidResize:(PEResizeControl *)resizeConrolView;
-- (void)resizeConrolViewDidEndResizing:(PEResizeControl *)resizeConrolView;
+- (void)resizeControlViewDidBeginResizing:(PEResizeControl *)resizeControlView;
+- (void)resizeControlViewDidResize:(PEResizeControl *)resizeControlView;
+- (void)resizeControlViewDidEndResizing:(PEResizeControl *)resizeControlView;
 
 @end

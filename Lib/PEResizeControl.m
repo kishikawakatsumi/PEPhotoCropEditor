@@ -37,20 +37,20 @@
         CGPoint translationInView = [gestureRecognizer translationInView:self.superview];
         self.startPoint = CGPointMake(roundf(translationInView.x), translationInView.y);
         
-        if ([self.delegate respondsToSelector:@selector(resizeConrolViewDidBeginResizing:)]) {
-            [self.delegate resizeConrolViewDidBeginResizing:self];
+        if ([self.delegate respondsToSelector:@selector(resizeControlViewDidBeginResizing:)]) {
+            [self.delegate resizeControlViewDidBeginResizing:self];
         }
     } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [gestureRecognizer translationInView:self.superview];
         self.translation = CGPointMake(roundf(self.startPoint.x + translation.x),
                                        roundf(self.startPoint.y + translation.y));
         
-        if ([self.delegate respondsToSelector:@selector(resizeConrolViewDidResize:)]) {
-            [self.delegate resizeConrolViewDidResize:self];
+        if ([self.delegate respondsToSelector:@selector(resizeControlViewDidResize:)]) {
+            [self.delegate resizeControlViewDidResize:self];
         }
     } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded || gestureRecognizer.state == UIGestureRecognizerStateCancelled) {
-        if ([self.delegate respondsToSelector:@selector(resizeConrolViewDidEndResizing:)]) {
-            [self.delegate resizeConrolViewDidEndResizing:self];
+        if ([self.delegate respondsToSelector:@selector(resizeControlViewDidEndResizing:)]) {
+            [self.delegate resizeControlViewDidEndResizing:self];
         }
     }
 }

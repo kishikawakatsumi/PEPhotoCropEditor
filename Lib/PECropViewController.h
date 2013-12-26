@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PECropViewControllerDelegate;
+
 @interface PECropViewController : UIViewController
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<PECropViewControllerDelegate> delegate;
 @property (nonatomic) UIImage *image;
 
 @property (nonatomic) BOOL keepingCropAspectRatio;

@@ -9,7 +9,7 @@
 #import "PECropRectView.h"
 #import "PEResizeControl.h"
 
-@interface PECropRectView ()
+@interface PECropRectView ()<PEResizeControlViewDelegate>
 
 @property (nonatomic) PEResizeControl *topLeftCornerView;
 @property (nonatomic) PEResizeControl *topRightCornerView;
@@ -163,7 +163,7 @@
 
 #pragma mark -
 
-- (void)resizeConrolViewDidBeginResizing:(PEResizeControl *)resizeConrolView
+- (void)resizeControlViewDidBeginResizing:(PEResizeControl *)resizeControlView
 {
     self.initialRect = self.frame;
     
@@ -172,16 +172,16 @@
     }
 }
 
-- (void)resizeConrolViewDidResize:(PEResizeControl *)resizeConrolView
+- (void)resizeControlViewDidResize:(PEResizeControl *)resizeControlView
 {
-    self.frame = [self cropRectMakeWithResizeControlView:resizeConrolView];
+    self.frame = [self cropRectMakeWithResizeControlView:resizeControlView];
         
     if ([self.delegate respondsToSelector:@selector(cropRectViewEditingChanged:)]) {
         [self.delegate cropRectViewEditingChanged:self];
     }
 }
 
-- (void)resizeConrolViewDidEndResizing:(PEResizeControl *)resizeConrolView
+- (void)resizeControlViewDidEndResizing:(PEResizeControl *)resizeControlView
 {
     if ([self.delegate respondsToSelector:@selector(cropRectViewDidEndEditing:)]) {
         [self.delegate cropRectViewDidEndEditing:self];
