@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PECropRectViewDelegate;
+
 @interface PECropRectView : UIView
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<PECropRectViewDelegate> delegate;
 @property (nonatomic) BOOL showsGridMajor;
 @property (nonatomic) BOOL showsGridMinor;
 
