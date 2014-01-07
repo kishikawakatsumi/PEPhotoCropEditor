@@ -221,26 +221,31 @@ static const CGFloat MarginRight = MarginLeft;
     self.cropRectView.keepingAspectRatio = self.keepingCropAspectRatio;
 }
 
-- (void)setCropAspectRatio:(CGFloat)aspectRatio
+- (void)setCropAspectRatio:(CGFloat)aspectRatio andCenter:(BOOL)center
 {
     CGRect cropRect = self.scrollView.frame;
     CGFloat width = CGRectGetWidth(cropRect);
     CGFloat height = CGRectGetHeight(cropRect);
-    if (width < height) {
+    if (aspectRatio <= 1.0f) {
         width = height * aspectRatio;
         if (width > CGRectGetWidth(self.imageView.bounds)) {
             width = CGRectGetWidth(cropRect);
-            height = width * aspectRatio;
+            height = width / aspectRatio;
         }
     } else {
-        height = width * aspectRatio;
+        height = width / aspectRatio;
         if (height > CGRectGetHeight(self.imageView.bounds)) {
             height = CGRectGetHeight(cropRect);
             width = height * aspectRatio;
         }
     }
     cropRect.size = CGSizeMake(width, height);
-    [self zoomToCropRect:cropRect];
+    [self zoomToCropRect:cropRect andCenter:center];
+}
+
+- (void)setCropAspectRatio:(CGFloat)aspectRatio
+{
+    [self setCropAspectRatio:aspectRatio andCenter:YES];
 }
 
 - (CGFloat)cropAspectRatio
@@ -390,7 +395,7 @@ static const CGFloat MarginRight = MarginLeft;
     [self zoomToCropRect:self.cropRectView.frame];
 }
 
-- (void)zoomToCropRect:(CGRect)toRect
+- (void)zoomToCropRect:(CGRect)toRect andCenter:(BOOL)center
 {
     if (CGRectEqualToRect(self.scrollView.frame, toRect)) {
         return;
@@ -412,6 +417,11 @@ static const CGFloat MarginRight = MarginLeft;
     zoomRect.size.width = CGRectGetWidth(cropRect) / (self.scrollView.zoomScale * scale);
     zoomRect.size.height = CGRectGetHeight(cropRect) / (self.scrollView.zoomScale * scale);
     
+    if(center) {
+        zoomRect.origin.y = ([[self imageView] bounds].size.height / 2) - (zoomRect.size.height / 2);
+        zoomRect.origin.x = ([[self imageView] bounds].size.width / 2) - (zoomRect.size.width / 2);
+    }
+    
     [UIView animateWithDuration:0.25
                           delay:0.0
                         options:UIViewAnimationOptionBeginFromCurrentState
@@ -423,6 +433,11 @@ static const CGFloat MarginRight = MarginLeft;
                      } completion:^(BOOL finished) {
                          
                      }];
+}
+
+- (void)zoomToCropRect:(CGRect)toRect
+{
+    [self zoomToCropRect:toRect andCenter:NO];
 }
 
 #pragma mark -
