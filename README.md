@@ -1,4 +1,4 @@
-PEPhotoCropEditor
+PEPhotoCropEditor ![License MIT](https://go-shields.herokuapp.com/license-MIT-yellow.png) 
 =================
 
 [![Version](https://cocoapod-badges.herokuapp.com/v/PEPhotoCropEditor/badge.png)](https://cocoapod-badges.herokuapp.com/v/PEPhotoCropEditor/badge.png)
