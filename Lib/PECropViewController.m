@@ -54,6 +54,8 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.toolbar.translucent = NO;
 #endif
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
