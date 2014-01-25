@@ -71,7 +71,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
                                                                        target:self
                                                                        action:@selector(constrain:)];
     self.toolbarItems = @[flexibleSpace, constrainButton, flexibleSpace];
-    self.navigationController.toolbarHidden = NO;
+    self.navigationController.toolbarHidden = self.keepingCropAspectRatio;
     
     self.cropView.image = self.image;
 }
@@ -119,6 +119,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 {
     _keepingCropAspectRatio = keepingCropAspectRatio;
     self.cropView.keepingCropAspectRatio = self.keepingCropAspectRatio;
+    self.navigationController.toolbarHidden = self.keepingCropAspectRatio;
 }
 
 - (void)setCropAspectRatio:(CGFloat)cropAspectRatio
