@@ -9,6 +9,9 @@
 #import "PECropViewController.h"
 #import "PECropView.h"
 
+@implementation PEAspectName
+@end
+
 @interface PECropViewController () <UIActionSheetDelegate>
 
 @property (nonatomic) PECropView *cropView;
@@ -143,64 +146,62 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 
 - (void)constrain:(id)sender
 {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                   delegate:self
-                                          cancelButtonTitle:PELocalizedString(@"Cancel", nil)
-                                     destructiveButtonTitle:nil
-                                          otherButtonTitles:
-                        PELocalizedString(@"Original", nil),
-                        PELocalizedString(@"Square", nil),
-                        PELocalizedString(@"3 x 2", nil),
-                        PELocalizedString(@"3 x 5", nil),
-                        PELocalizedString(@"4 x 3", nil),
-                        PELocalizedString(@"4 x 6", nil),
-                        PELocalizedString(@"5 x 7", nil),
-                        PELocalizedString(@"8 x 10", nil),
-                        PELocalizedString(@"16 x 9", nil), nil];
+    self.actionSheet = [[UIActionSheet alloc] init];
+    self.actionSheet.delegate = self;
+    for (PEAspectName *constrain in self.aspectNames) {
+        [self.actionSheet addButtonWithTitle:constrain.name];
+    }
+    [self.actionSheet addButtonWithTitle:PELocalizedString(@"Cancel", nil)];
+    self.actionSheet.cancelButtonIndex = self.aspectNames.count;
     [self.actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        CGRect cropRect = self.cropView.cropRect;
-        CGSize size = self.cropView.image.size;
-        CGFloat width = size.width;
-        CGFloat height = size.height;
-        CGFloat ratio;
-        if (width < height) {
-            ratio = width / height;
-            cropRect.size = CGSizeMake(CGRectGetHeight(cropRect) * ratio, CGRectGetHeight(cropRect));
-        } else {
-            ratio = height / width;
-            cropRect.size = CGSizeMake(CGRectGetWidth(cropRect), CGRectGetWidth(cropRect) * ratio);
+    if (buttonIndex < self.aspectNames.count) {
+        PEAspectName *constrain = self.aspectNames[buttonIndex];
+        CGFloat ratio = constrain.aspectRatio;
+        CGSize size = self.cropView.cropRect.size;
+        CGSize source = self.cropView.image.size;
+        if (!ratio) {
+            // load original aspect ratio
+            ratio = source.width / source.height;
         }
-        self.cropView.cropRect = cropRect;
-    } else if (buttonIndex == 1) {
-        self.cropView.cropAspectRatio = 1.0f;
-    } else if (buttonIndex == 2) {
-        self.cropView.cropAspectRatio = 2.0f / 3.0f;
-    } else if (buttonIndex == 3) {
-        self.cropView.cropAspectRatio = 3.0f / 5.0f;
-    } else if (buttonIndex == 4) {
-        CGFloat ratio = 3.0f / 4.0f;
-        CGRect cropRect = self.cropView.cropRect;
-        CGFloat width = CGRectGetWidth(cropRect);
-        cropRect.size = CGSizeMake(width, width * ratio);
-        self.cropView.cropRect = cropRect;
-    } else if (buttonIndex == 5) {
-        self.cropView.cropAspectRatio = 4.0f / 6.0f;
-    } else if (buttonIndex == 6) {
-        self.cropView.cropAspectRatio = 5.0f / 7.0f;
-    } else if (buttonIndex == 7) {
-        self.cropView.cropAspectRatio = 8.0f / 10.0f;
-    } else if (buttonIndex == 8) {
-        CGFloat ratio = 9.0f / 16.0f;
-        CGRect cropRect = self.cropView.cropRect;
-        CGFloat width = CGRectGetWidth(cropRect);
-        cropRect.size = CGSizeMake(width, width * ratio);
-        self.cropView.cropRect = cropRect;
+        BOOL landscape = (size.width > size.height);
+        if (size.width == size.height) {
+            // load original orientation when square
+            landscape = (source.width > source.height);
+        }
+        if (landscape ^ (ratio > 1)) {
+            // keep orientation
+            ratio = 1 / ratio;
+        }
+        self.cropView.cropAspectRatio = ratio;
     }
+}
+
+- (NSArray *)aspectNames
+{
+    if (_aspectNames) return _aspectNames;
+    _aspectNames = [NSArray array];
+    [self addAspectName:PELocalizedString(@"Original", nil) forRatio:0.0f];
+    [self addAspectName:PELocalizedString(@"Square", nil) forRatio:1.0f];
+    [self addAspectName:PELocalizedString(@"3 x 2", nil) forRatio:2.0f / 3.0f];
+    [self addAspectName:PELocalizedString(@"3 x 5", nil) forRatio:3.0f / 5.0f];
+    [self addAspectName:PELocalizedString(@"4 x 3", nil) forRatio:3.0f / 4.0f];
+    [self addAspectName:PELocalizedString(@"4 x 6", nil) forRatio:4.0f / 6.0f];
+    [self addAspectName:PELocalizedString(@"5 x 7", nil) forRatio:5.0f / 7.0f];
+    [self addAspectName:PELocalizedString(@"8 x 10", nil) forRatio:8.0f / 10.0f];
+    [self addAspectName:PELocalizedString(@"16 x 9", nil) forRatio:9.0f / 16.0f];
+    return _aspectNames;
+}
+
+- (void)addAspectName:(NSString *)name forRatio:(CGFloat)ratio;
+{
+    PEAspectName *constrain = [[PEAspectName alloc] init];
+    constrain.name = name;
+    constrain.aspectRatio = ratio;
+    self.aspectNames = [self.aspectNames arrayByAddingObject:constrain];
 }
 
 @end
