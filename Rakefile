@@ -7,10 +7,10 @@ task :default => [:clean, :build]
 
 desc 'Clean'
 task :clean do
-  system("xcodebuild clean -scheme PEPhotoCropEditor | xcpretty -c")
+  sh "xcodebuild clean -scheme PEPhotoCropEditor | xcpretty -c; exit ${PIPESTATUS[0]}"
 end
 
 desc 'Build'
 task :build do
-  system("xcodebuild -scheme PEPhotoCropEditor CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO | xcpretty -c")
+  sh "xcodebuild -scheme PEPhotoCropEditor CODE_SIGN_IDENTITY=\"\" CODE_SIGNING_REQUIRED=NO | xcpretty -c; exit ${PIPESTATUS[0]}"
 end
