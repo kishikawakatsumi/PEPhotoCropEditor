@@ -11,9 +11,6 @@ PEPhotoCropEditor is image cropping library for iOS, similar to the Photos.app U
 
 <img src="https://raw.github.com/kishikawakatsumi/PEPhotoCropEditor/master/Screenshots/ss01.png" alt="ScreenShot 1" width="280px" style="width: 280px;" />&nbsp;<a href="https://vimeo.com/66661806"><img src="https://raw.github.com/kishikawakatsumi/PEPhotoCropEditor/master/Screenshots/ss02.png" alt="[Movie 1" width="440px" style="width: 440px;" /></a>
 
-## License
-MIT License
-
 ## Features
 - Both iPhone/iPad available
 - Works fine any device orientations
@@ -69,6 +66,10 @@ controller.keepingCropAspectRatio = YES;
 ```objective-c
 self.cropView.keepingCropAspectRatio = YES;
 ```
+
+
+## License
+MIT License
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kishikawakatsumi/pephotocropeditor/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
