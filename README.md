@@ -69,3 +69,7 @@ controller.keepingCropAspectRatio = YES;
 ```objective-c
 self.cropView.keepingCropAspectRatio = YES;
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kishikawakatsumi/pephotocropeditor/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
