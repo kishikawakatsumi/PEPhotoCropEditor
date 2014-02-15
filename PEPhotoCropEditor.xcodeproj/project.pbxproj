@@ -89,6 +89,7 @@
 				14BB4E87174BC39000C75F78 /* Products */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		14BB4E87174BC39000C75F78 /* Products */ = {
 			isa = PBXGroup;
