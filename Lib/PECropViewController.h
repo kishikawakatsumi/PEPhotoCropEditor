@@ -20,6 +20,7 @@
 
 @property (nonatomic) CGRect cropRect;
 
+@property (nonatomic) BOOL toolbarHidden;
 @end
 
 @protocol PECropViewControllerDelegate <NSObject>
