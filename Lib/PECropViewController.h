@@ -19,8 +19,12 @@
 @property (nonatomic) CGFloat cropAspectRatio;
 
 @property (nonatomic) CGRect cropRect;
+@property (nonatomic) CGRect imageCropRect;
 
 @property (nonatomic) BOOL toolbarHidden;
+
+- (void)resetCropRect;
+- (void)resetCropRectAnimated:(BOOL)animated;
 
 @end
 
