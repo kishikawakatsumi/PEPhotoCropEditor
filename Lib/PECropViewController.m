@@ -35,6 +35,8 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     return [[PECropViewController bundle] localizedStringForKey:key value:nil table:@"Localizable"];
 }
 
+#pragma mark -
+
 - (void)loadView
 {
     UIView *contentView = [[UIView alloc] init];
@@ -85,6 +87,9 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     if (!CGRectEqualToRect(self.cropRect, CGRectZero)) {
         self.cropRect = self.cropRect;
     }
+    if (!CGRectEqualToRect(self.imageCropRect, CGRectZero)) {
+        self.imageCropRect = self.imageCropRect;
+    }
     
     self.keepingCropAspectRatio = self.keepingCropAspectRatio;
 }
@@ -94,24 +99,12 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     return YES;
 }
 
+#pragma mark -
+
 - (void)setImage:(UIImage *)image
 {
     _image = image;
     self.cropView.image = image;
-}
-
-- (void)cancel:(id)sender
-{
-    if ([self.delegate respondsToSelector:@selector(cropViewControllerDidCancel:)]) {
-        [self.delegate cropViewControllerDidCancel:self];
-    }
-}
-
-- (void)done:(id)sender
-{
-    if ([self.delegate respondsToSelector:@selector(cropViewController:didFinishCroppingImage:)]) {
-        [self.delegate cropViewController:self didFinishCroppingImage:self.cropView.croppedImage];
-    }
 }
 
 - (void)setKeepingCropAspectRatio:(BOOL)keepingCropAspectRatio
@@ -129,6 +122,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 - (void)setCropRect:(CGRect)cropRect
 {
     _cropRect = cropRect;
+    _imageCropRect = CGRectZero;
     
     CGRect cropViewCropRect = self.cropView.cropRect;
     cropViewCropRect.origin.x += cropRect.origin.x;
@@ -138,6 +132,40 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
                              fminf(CGRectGetMaxY(cropViewCropRect) - CGRectGetMinY(cropViewCropRect), CGRectGetHeight(cropRect)));
     cropViewCropRect.size = size;
     self.cropView.cropRect = cropViewCropRect;
+}
+
+- (void)setImageCropRect:(CGRect)imageCropRect
+{
+    _imageCropRect = imageCropRect;
+    _cropRect = CGRectZero;
+    
+    self.cropView.imageCropRect = imageCropRect;
+}
+
+- (void)resetCropRect
+{
+    [self.cropView resetCropRect];
+}
+
+- (void)resetCropRectAnimated:(BOOL)animated
+{
+    [self.cropView resetCropRectAnimated:animated];
+}
+
+#pragma mark -
+
+- (void)cancel:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(cropViewControllerDidCancel:)]) {
+        [self.delegate cropViewControllerDidCancel:self];
+    }
+}
+
+- (void)done:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(cropViewController:didFinishCroppingImage:)]) {
+        [self.delegate cropViewController:self didFinishCroppingImage:self.cropView.croppedImage];
+    }
 }
 
 - (void)constrain:(id)sender
@@ -158,6 +186,8 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
                         PELocalizedString(@"16 x 9", nil), nil];
     [self.actionSheet showFromToolbar:self.navigationController.toolbar];
 }
+
+#pragma mark -
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
