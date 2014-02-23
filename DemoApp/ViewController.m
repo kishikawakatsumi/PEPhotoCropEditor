@@ -67,6 +67,15 @@
     controller.delegate = self;
     controller.image = self.imageView.image;
     
+    UIImage *image = self.imageView.image;
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+    CGFloat length = MIN(width, height);
+    controller.imageCropRect = CGRectMake((width - length) / 2,
+                                          (height - length) / 2,
+                                          length,
+                                          length);
+    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {

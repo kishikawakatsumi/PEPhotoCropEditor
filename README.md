@@ -68,6 +68,38 @@ controller.keepingCropAspectRatio = YES;
 self.cropView.keepingCropAspectRatio = YES;
 ```
 
+### Specify crop rect by image size based 
+```objective-c
+// e.g.) Cropping center square
+CGFloat width = image.size.width;
+CGFloat height = image.size.height;
+CGFloat length = MIN(width, height);
+controller.imageCropRect = CGRectMake((width - length) / 2,
+                                      (height - length) / 2,
+                                      length,
+                                      length);
+```
+
+```objective-c
+// e.g.) Cropping center square
+CGFloat width = image.size.width;
+CGFloat height = image.size.height;
+CGFloat length = MIN(width, height);
+self.cropView.imageCropRect = CGRectMake((width - length) / 2,
+                                         (height - length) / 2,
+                                         length,
+                                         length);
+```
+
+### Reset back crop rect to original image size and rotation 
+```objective-c
+[controller resetCropRect];
+```
+
+```objective-c
+[self.cropView resetCropRect];
+```
+
 
 ## License
 
