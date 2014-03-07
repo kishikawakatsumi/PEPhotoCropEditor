@@ -109,7 +109,3 @@ self.cropView.imageCropRect = CGRectMake((width - length) / 2,
 [BSD]: http://opensource.org/licenses/bsd-license.php
 
 PEPhotoCropEditor is available under the [MIT license][MIT]. See the LICENSE file for more info.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kishikawakatsumi/pephotocropeditor/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
