@@ -14,8 +14,11 @@
                          croppedToRect:(CGRect)rect
 {
     UIImage *rotatedImage = [self rotatedImageWithtransform:rotation];
-
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, rect);
+    
+    CGFloat scale = rotatedImage.scale;
+    CGRect cropRect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(scale, scale));
+    
+    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, cropRect);
     UIImage *image = [UIImage imageWithCGImage:croppedImage scale:self.scale orientation:rotatedImage.imageOrientation];
     CGImageRelease(croppedImage);
     
