@@ -13,7 +13,7 @@
 - (UIImage *)rotatedImageWithtransform:(CGAffineTransform)rotation
                          croppedToRect:(CGRect)rect
 {
-    UIImage *rotatedImage = [self rotatedImageWithtransform:rotation];
+    UIImage *rotatedImage = [self pe_rotatedImageWithtransform:rotation];
     
     CGFloat scale = rotatedImage.scale;
     CGRect cropRect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(scale, scale));
@@ -25,7 +25,7 @@
     return image;
 }
 
-- (UIImage *)rotatedImageWithtransform:(CGAffineTransform)transform
+- (UIImage *)pe_rotatedImageWithtransform:(CGAffineTransform)transform
 {
     CGSize size = self.size;
     
