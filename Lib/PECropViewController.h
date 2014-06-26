@@ -23,6 +23,13 @@
 
 @property (nonatomic) BOOL toolbarHidden;
 
+@property (nonatomic, assign, getter = isRotationEnabled) BOOL rotationEnabled;
+
+@property (nonatomic, readonly) CGAffineTransform rotationTransform;
+
+@property (nonatomic, readonly) CGRect zoomedCropRect;
+
+
 - (void)resetCropRect;
 - (void)resetCropRectAnimated:(BOOL)animated;
 

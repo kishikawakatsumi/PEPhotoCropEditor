@@ -14,9 +14,12 @@
 @property (nonatomic) PECropView *cropView;
 @property (nonatomic) UIActionSheet *actionSheet;
 
+- (void)commonInit;
+
 @end
 
 @implementation PECropViewController
+@synthesize rotationEnabled = _rotationEnabled;
 
 + (NSBundle *)bundle
 {
@@ -33,6 +36,31 @@
 static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 {
     return [[PECropViewController bundle] localizedStringForKey:key value:nil table:@"Localizable"];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self) {
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+- (void)commonInit {
+    self.rotationEnabled = YES;
 }
 
 #pragma mark -
@@ -75,6 +103,8 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     self.navigationController.toolbarHidden = self.toolbarHidden;
     
     self.cropView.image = self.image;
+    
+    self.cropView.rotationGestureRecognizer.enabled = _rotationEnabled;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -140,6 +170,27 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     _cropRect = CGRectZero;
     
     self.cropView.imageCropRect = imageCropRect;
+}
+
+- (BOOL)isRotationEnabled
+{
+    return _rotationEnabled;
+}
+
+- (void)setRotationEnabled:(BOOL)rotationEnabled
+{
+    _rotationEnabled = rotationEnabled;
+    self.cropView.rotationGestureRecognizer.enabled = _rotationEnabled;
+}
+
+- (CGAffineTransform)rotationTransform
+{
+    return self.cropView.rotation;
+}
+
+- (CGRect)zoomedCropRect
+{
+    return self.cropView.zoomedCropRect;
 }
 
 - (void)resetCropRect
