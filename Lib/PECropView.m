@@ -76,6 +76,7 @@ static const CGFloat MarginRight = MarginLeft;
     
     UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     rotationGestureRecognizer.delegate = self;
+    _rotationGestureRecognizer = rotationGestureRecognizer;
     [self.scrollView addGestureRecognizer:rotationGestureRecognizer];
     
     self.cropRectView = [[PECropRectView alloc] init];
