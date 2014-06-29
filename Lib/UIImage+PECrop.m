@@ -42,6 +42,7 @@
     UIImage *rotatedImage = UIGraphicsGetImageFromCurrentImageContext();
     
     UIGraphicsEndImageContext();
+    CGContextRelease(context);
     
     return rotatedImage;
 }
