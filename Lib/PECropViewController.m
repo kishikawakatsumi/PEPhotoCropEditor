@@ -11,6 +11,7 @@
 
 @interface PECropViewController () <UIActionSheetDelegate>
 
+@property (nonatomic) NSMutableArray *actionSheetItems;
 @property (nonatomic) PECropView *cropView;
 @property (nonatomic) UIActionSheet *actionSheet;
 
@@ -124,6 +125,11 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     self.keepingCropAspectRatio = self.keepingCropAspectRatio;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+	self.actionSheetItems = nil;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
@@ -221,20 +227,19 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 
 - (void)constrain:(id)sender
 {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                   delegate:self
-                                          cancelButtonTitle:PELocalizedString(@"Cancel", nil)
-                                     destructiveButtonTitle:nil
-                                          otherButtonTitles:
-                        PELocalizedString(@"Original", nil),
-                        PELocalizedString(@"Square", nil),
-                        PELocalizedString(@"3 x 2", nil),
-                        PELocalizedString(@"3 x 5", nil),
-                        PELocalizedString(@"4 x 3", nil),
-                        PELocalizedString(@"4 x 6", nil),
-                        PELocalizedString(@"5 x 7", nil),
-                        PELocalizedString(@"8 x 10", nil),
-                        PELocalizedString(@"16 x 9", nil), nil];
+		self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+													   delegate:self
+											  cancelButtonTitle:nil//PELocalizedString(@"Cancel", nil)
+										 destructiveButtonTitle:nil
+											  otherButtonTitles:nil];
+	if (self.actionSheetItems)
+		for(NSString* item in self.actionSheetItems)
+			[self.actionSheet addButtonWithTitle:item];
+	else
+		for (int i = 0; i < 9; i++)
+			[self.actionSheet addButtonWithTitle:stringWithImageConstrain(i)];
+
+	[self.actionSheet addButtonWithTitle:PELocalizedString(@"Cancel", nil)];
     [self.actionSheet showFromToolbar:self.navigationController.toolbar];
 }
 
@@ -242,7 +247,8 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
+	NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:stringWithImageConstrain(ImageConstrainOriginal)]) {
         CGRect cropRect = self.cropView.cropRect;
         CGSize size = self.cropView.image.size;
         CGFloat width = size.width;
@@ -256,31 +262,56 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
             cropRect.size = CGSizeMake(CGRectGetWidth(cropRect), CGRectGetWidth(cropRect) * ratio);
         }
         self.cropView.cropRect = cropRect;
-    } else if (buttonIndex == 1) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrainSqure)]) {
         self.cropView.cropAspectRatio = 1.0f;
-    } else if (buttonIndex == 2) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrain3In2)]) {
         self.cropView.cropAspectRatio = 2.0f / 3.0f;
-    } else if (buttonIndex == 3) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrain3In5)]) {
         self.cropView.cropAspectRatio = 3.0f / 5.0f;
-    } else if (buttonIndex == 4) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrain4In3)]) {
         CGFloat ratio = 3.0f / 4.0f;
         CGRect cropRect = self.cropView.cropRect;
         CGFloat width = CGRectGetWidth(cropRect);
         cropRect.size = CGSizeMake(width, width * ratio);
         self.cropView.cropRect = cropRect;
-    } else if (buttonIndex == 5) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrain4In6)]) {
         self.cropView.cropAspectRatio = 4.0f / 6.0f;
-    } else if (buttonIndex == 6) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrain5In7)]) {
         self.cropView.cropAspectRatio = 5.0f / 7.0f;
-    } else if (buttonIndex == 7) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrain8In10)]) {
         self.cropView.cropAspectRatio = 8.0f / 10.0f;
-    } else if (buttonIndex == 8) {
+    } else if ([title isEqualToString:stringWithImageConstrain(ImageConstrain16In9)]) {
         CGFloat ratio = 9.0f / 16.0f;
         CGRect cropRect = self.cropView.cropRect;
         CGFloat width = CGRectGetWidth(cropRect);
         cropRect.size = CGSizeMake(width, width * ratio);
         self.cropView.cropRect = cropRect;
     }
+	else
+		[self.actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+}
+
+- (void)addConstrainToActionSheet:(ImageConstrain)constrain
+{
+	if (self.actionSheetItems == nil)
+		self.actionSheetItems = [[NSMutableArray alloc]init];
+	[self.actionSheetItems addObject:stringWithImageConstrain(constrain)];
+}
+
+
+NSString *stringWithImageConstrain(ImageConstrain input) {
+    NSArray *arr = @[
+					 PELocalizedString(@"Original", nil),
+					 PELocalizedString(@"Square", nil),
+					 PELocalizedString(@"3 x 2", nil),
+					 PELocalizedString(@"3 x 5", nil),
+					 PELocalizedString(@"4 x 3", nil),
+					 PELocalizedString(@"4 x 6", nil),
+					 PELocalizedString(@"5 x 7", nil),
+					 PELocalizedString(@"8 x 10", nil),
+					 PELocalizedString(@"16 x 9", nil),
+					 ];
+    return (NSString *)[arr objectAtIndex:input];
 }
 
 @end
