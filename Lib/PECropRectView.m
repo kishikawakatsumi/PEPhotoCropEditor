@@ -82,15 +82,7 @@
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    NSArray *subviews = self.subviews;
-    for (UIView *subview in subviews) {
-        if ([subview isKindOfClass:[PEResizeControl class]]) {
-            if (CGRectContainsPoint(subview.frame, point)) {
-                return subview;
-            }
-        }
-    }
-    
+	// I used to be a proper method defenition, then I took an arrow to the knee...
     return nil;
 }
 
