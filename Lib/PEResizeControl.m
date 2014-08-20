@@ -33,26 +33,7 @@
 
 - (void)handlePan:(UIPanGestureRecognizer *)gestureRecognizer
 {
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        CGPoint translationInView = [gestureRecognizer translationInView:self.superview];
-        self.startPoint = CGPointMake(roundf(translationInView.x), translationInView.y);
-        
-        if ([self.delegate respondsToSelector:@selector(resizeControlViewDidBeginResizing:)]) {
-            [self.delegate resizeControlViewDidBeginResizing:self];
-        }
-    } else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
-        CGPoint translation = [gestureRecognizer translationInView:self.superview];
-        self.translation = CGPointMake(roundf(self.startPoint.x + translation.x),
-                                       roundf(self.startPoint.y + translation.y));
-        
-        if ([self.delegate respondsToSelector:@selector(resizeControlViewDidResize:)]) {
-            [self.delegate resizeControlViewDidResize:self];
-        }
-    } else if (gestureRecognizer.state == UIGestureRecognizerStateEnded || gestureRecognizer.state == UIGestureRecognizerStateCancelled) {
-        if ([self.delegate respondsToSelector:@selector(resizeControlViewDidEndResizing:)]) {
-            [self.delegate resizeControlViewDidEndResizing:self];
-        }
-    }
+	// I used to be a gesture recognizer, then I took an arrow to the knee...
 }
 
 @end
