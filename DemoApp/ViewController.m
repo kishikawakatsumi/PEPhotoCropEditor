@@ -40,11 +40,10 @@
 
 #pragma mark - PECropViewControllerDelegate methods
 
-- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage transform:(CGAffineTransform)transform cropRect:(CGRect)cropRect
 {
     [controller dismissViewControllerAnimated:YES completion:NULL];
     self.imageView.image = croppedImage;
-    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self updateEditButtonEnabled];
     }
