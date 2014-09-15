@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    ImageConstrainOriginal,	// Original Image
+    ImageConstrainSqure,	// Squre
+    ImageConstrain3In2,		// 3 x 2
+    ImageConstrain3In5,		// 3 x 5
+    ImageConstrain4In3,		// 4 x 3
+    ImageConstrain4In6,		// 4 x 6
+    ImageConstrain5In7,		// 5 x 7
+    ImageConstrain8In10,	// 8 x 10
+	ImageConstrain16In9,	// 16 x 9
+} ImageConstrain;
+
 @protocol PECropViewControllerDelegate;
 
 @interface PECropViewController : UIViewController
@@ -32,6 +44,7 @@
 
 - (void)resetCropRect;
 - (void)resetCropRectAnimated:(BOOL)animated;
+- (void)addConstrainToActionSheet:(ImageConstrain)constrain;
 
 @end
 
