@@ -291,40 +291,48 @@
         }
     }
 
-    CGFloat minWidth = CGRectGetWidth(self.leftEdgeView.bounds) + CGRectGetWidth(self.rightEdgeView.bounds);
-    if (CGRectGetWidth(rect) < minWidth) {
-        rect.origin.x = CGRectGetMaxX(self.frame) - minWidth;
-        rect.size.width = minWidth;
-    }
-
-    CGFloat minHeight = CGRectGetHeight(self.topEdgeView.bounds) + CGRectGetHeight(self.bottomEdgeView.bounds);
-    if (CGRectGetHeight(rect) < minHeight) {
-        rect.origin.y = CGRectGetMaxY(self.frame) - minHeight;
-        rect.size.height = minHeight;
-    }
-
+	CGFloat minWidth = CGRectGetWidth(self.leftEdgeView.bounds) + CGRectGetWidth(self.rightEdgeView.bounds);
+	CGFloat minHeight = CGRectGetHeight(self.topEdgeView.bounds) + CGRectGetHeight(self.bottomEdgeView.bounds);
+	
     if (self.fixedAspectRatio) {
-        CGRect constrainedRect = rect;
-
-        if (CGRectGetWidth(rect) < minWidth) {
-            constrainedRect.size.width = rect.size.height * (minWidth / rect.size.width);
-        }
-
-        if (CGRectGetHeight(rect) < minHeight) {
-            constrainedRect.size.height = rect.size.width * (minHeight / rect.size.height);
-        }
-
-        rect = constrainedRect;
-    }
-    
-    return rect;
+		// Compute a minSize for the crop rectangle, then adjust minWidth and minHeight based on the original aspect ratio and the minSize
+		CGFloat minSize = CGRectGetWidth(self.leftEdgeView.bounds) + CGRectGetWidth(self.rightEdgeView.bounds);
+		if (self.initialRect.size.width > self.initialRect.size.height) {
+			minHeight = minSize;
+			minWidth = minSize * self.initialRect.size.width / self.initialRect.size.height;
+		} else {
+			minWidth = minSize;
+			minHeight = minSize * self.initialRect.size.width / self.initialRect.size.height;
+		}
+		
+        if (CGRectGetWidth(rect) < minWidth){
+			rect.size.width = minWidth;
+			rect.size.height = rect.size.width * (self.initialRect.size.height / self.initialRect.size.width);
+		}
+		if (CGRectGetHeight(rect) < minHeight) {
+			rect.size.height = minHeight;
+			rect.size.height = rect.size.height * (self.initialRect.size.width / self.initialRect.size.height);
+		}
+    } else {
+		if (CGRectGetWidth(rect) < minWidth) {
+			rect.origin.x = CGRectGetMaxX(self.frame) - minWidth;
+			rect.size.width = minWidth;
+		}
+		
+		if (CGRectGetHeight(rect) < minHeight) {
+			rect.origin.y = CGRectGetMaxY(self.frame) - minHeight;
+			rect.size.height = minHeight;
+		}
+	}
+        return rect;
 }
 
 - (CGRect)constrainedRectWithRectBasisOfWidth:(CGRect)rect aspectRatio:(CGFloat)aspectRatio
 {
     CGFloat width = CGRectGetWidth(rect);
     CGFloat height = CGRectGetHeight(rect);
-    if (width < height) {
+//    if (width < height) {
+	if (self.initialRect.size.width < self.initialRect.size.height) {
         height = width / self.fixedAspectRatio;
     } else {
         height = width * self.fixedAspectRatio;
