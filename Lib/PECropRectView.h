@@ -16,6 +16,7 @@
 @property (nonatomic) BOOL showsGridMajor;
 @property (nonatomic) BOOL showsGridMinor;
 
+@property (nonatomic) BOOL keepingAspectOrientation;
 @property (nonatomic) BOOL keepingAspectRatio;
 
 @end

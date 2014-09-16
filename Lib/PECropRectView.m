@@ -159,7 +159,7 @@
     if (self.keepingAspectRatio) {
         CGFloat width = CGRectGetWidth(self.bounds);
         CGFloat height = CGRectGetHeight(self.bounds);
-        self.fixedAspectRatio = fminf(width / height, height / width);
+        self.fixedAspectRatio = width / height;
     }
 }
 
@@ -201,7 +201,7 @@
                           CGRectGetHeight(self.initialRect) - resizeControlView.translation.y);
         
         if (self.keepingAspectRatio) {
-            rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+            rect = [self constrainedRectWithRectBasisOfHeight:rect];
         }
     } else if (resizeControlView == self.leftEdgeView) {
         rect = CGRectMake(CGRectGetMinX(self.initialRect) + resizeControlView.translation.x,
@@ -210,7 +210,7 @@
                           CGRectGetHeight(self.initialRect));
         
         if (self.keepingAspectRatio) {
-            rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+            rect = [self constrainedRectWithRectBasisOfWidth:rect];
         }
     } else if (resizeControlView == self.bottomEdgeView) {
         rect = CGRectMake(CGRectGetMinX(self.initialRect),
@@ -219,7 +219,7 @@
                           CGRectGetHeight(self.initialRect) + resizeControlView.translation.y);
         
         if (self.keepingAspectRatio) {
-            rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+            rect = [self constrainedRectWithRectBasisOfHeight:rect];
         }
     } else if (resizeControlView == self.rightEdgeView) {
         rect = CGRectMake(CGRectGetMinX(self.initialRect),
@@ -228,7 +228,7 @@
                           CGRectGetHeight(self.initialRect));
         
         if (self.keepingAspectRatio) {
-            rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+            rect = [self constrainedRectWithRectBasisOfWidth:rect];
         }
     } else if (resizeControlView == self.topLeftCornerView) {
         rect = CGRectMake(CGRectGetMinX(self.initialRect) + resizeControlView.translation.x,
@@ -239,9 +239,9 @@
         if (self.keepingAspectRatio) {
             CGRect constrainedRect;
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
-                constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+                constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect];
             } else {
-                constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+                constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect];
             }
             constrainedRect.origin.x -= CGRectGetWidth(constrainedRect) - CGRectGetWidth(rect);
             constrainedRect.origin.y -= CGRectGetHeight(constrainedRect) - CGRectGetHeight(rect);
@@ -255,9 +255,9 @@
         
         if (self.keepingAspectRatio) {
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
-                rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+                rect = [self constrainedRectWithRectBasisOfHeight:rect];
             } else {
-                rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+                rect = [self constrainedRectWithRectBasisOfWidth:rect];
             }
         }
     } else if (resizeControlView == self.bottomLeftCornerView) {
@@ -269,9 +269,9 @@
         if (self.keepingAspectRatio) {
             CGRect constrainedRect;
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
-                constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+                constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect];
             } else {
-                constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+                constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect];
             }
             constrainedRect.origin.x -= CGRectGetWidth(constrainedRect) - CGRectGetWidth(rect);
             rect = constrainedRect;
@@ -284,9 +284,9 @@
         
         if (self.keepingAspectRatio) {
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
-                rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+                rect = [self constrainedRectWithRectBasisOfHeight:rect];
             } else {
-                rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+                rect = [self constrainedRectWithRectBasisOfWidth:rect];
             }
         }
     }
@@ -320,11 +320,18 @@
     return rect;
 }
 
-- (CGRect)constrainedRectWithRectBasisOfWidth:(CGRect)rect aspectRatio:(CGFloat)aspectRatio
+- (CGRect)constrainedRectWithRectBasisOfWidth:(CGRect)rect
 {
     CGFloat width = CGRectGetWidth(rect);
     CGFloat height = CGRectGetHeight(rect);
-    if (width < height) {
+    
+    BOOL divide = width < height;
+    if (self.keepingAspectOrientation) {
+        divide = self.fixedAspectRatio < 1;
+    }
+    divide = self.fixedAspectRatio > 1 ? !divide : divide;
+    
+    if (divide) {
         height = width / self.fixedAspectRatio;
     } else {
         height = width * self.fixedAspectRatio;
@@ -334,11 +341,18 @@
     return rect;
 }
 
-- (CGRect)constrainedRectWithRectBasisOfHeight:(CGRect)rect aspectRatio:(CGFloat)aspectRatio
-{
+- (CGRect)constrainedRectWithRectBasisOfHeight:(CGRect)rect
+{    
     CGFloat width = CGRectGetWidth(rect);
     CGFloat height = CGRectGetHeight(rect);
-    if (width < height) {
+    
+    BOOL multiply = width < height;
+    if (self.keepingAspectOrientation) {
+        multiply = self.fixedAspectRatio < 1;
+    }
+    multiply = self.fixedAspectRatio > 1 ? !multiply : multiply;
+    
+    if (multiply) {
         width = height * self.fixedAspectRatio;
     } else {
         width = height / self.fixedAspectRatio;

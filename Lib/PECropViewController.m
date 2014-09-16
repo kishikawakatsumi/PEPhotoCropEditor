@@ -122,6 +122,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     }
     
     self.keepingCropAspectRatio = self.keepingCropAspectRatio;
+    self.keepingCropAspectOrientation = self.keepingCropAspectOrientation;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -141,6 +142,12 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
 {
     _keepingCropAspectRatio = keepingCropAspectRatio;
     self.cropView.keepingCropAspectRatio = self.keepingCropAspectRatio;
+}
+
+- (void)setKeepingCropAspectOrientation:(BOOL)keepingCropAspectOrientation
+{
+    _keepingCropAspectOrientation = keepingCropAspectOrientation;
+    self.cropView.keepingCropAspectOrientation = self.keepingCropAspectOrientation;
 }
 
 - (void)setCropAspectRatio:(CGFloat)cropAspectRatio
