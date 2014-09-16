@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) CGAffineTransform rotation;
 @property (nonatomic, readonly) BOOL userHasModifiedCropArea;
 
+@property (nonatomic) BOOL keepingCropAspectOrientation;
 @property (nonatomic) BOOL keepingCropAspectRatio;
 @property (nonatomic) CGFloat cropAspectRatio;
 
