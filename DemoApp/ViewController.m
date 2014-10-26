@@ -74,6 +74,7 @@
                                           (height - length) / 2,
                                           length,
                                           length);
+    controller.cropAspectRatio = 4.0f/3.0f;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
