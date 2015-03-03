@@ -222,6 +222,12 @@ static const CGFloat MarginLeft = 20.0f;
     self.cropRectView.keepingAspectRatio = self.keepingCropAspectRatio;
 }
 
+- (void)setEnforceCropMinimumSize:(BOOL)enforceCropMinimumSize
+{
+    _enforceCropMinimumSize = enforceCropMinimumSize;
+    self.cropRectView.enforceMinimumSize = self.enforceCropMinimumSize;
+}
+
 - (void)setCropAspectRatio:(CGFloat)aspectRatio andCenter:(BOOL)center
 {
     CGRect cropRect = self.scrollView.frame;
@@ -394,6 +400,7 @@ static const CGFloat MarginLeft = 20.0f;
         cropRect.size = CGSizeMake(!self.keepingCropAspectRatio ? cropRect.size.width : cropRect.size.width * (cappedHeight / cropRect.size.height),
                                    cappedHeight);
     }
+    
     if (CGRectGetMaxX(rect) > CGRectGetMaxX(self.zoomingView.frame)) {
         CGFloat cappedWidth = CGRectGetMaxX([self.scrollView convertRect:self.zoomingView.frame toView:self]) - CGRectGetMinX(cropRect);
         cropRect.size = CGSizeMake(cappedWidth,

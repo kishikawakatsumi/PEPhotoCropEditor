@@ -17,6 +17,7 @@
 @property (nonatomic) BOOL showsGridMinor;
 
 @property (nonatomic) BOOL keepingAspectRatio;
+@property (nonatomic) BOOL enforceMinimumSize;
 
 @end
 
