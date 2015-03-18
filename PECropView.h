@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <AVFoundation/AVFoundation.h>
+#import "PECropRectView.h"
 
 @interface PECropView : UIView
 
@@ -16,7 +17,7 @@
 @property (nonatomic, readonly) UIImage *croppedImage;
 @property (nonatomic, readonly) CGRect zoomedCropRect;
 @property (nonatomic, readonly) CGAffineTransform rotation;
-@property (nonatomic, readonly) BOOL userHasModifiedCropArea;
+@property (nonatomic) BOOL userHasModifiedCropArea;
 
 @property (nonatomic) BOOL keepingCropAspectRatio;
 @property (nonatomic) CGFloat cropAspectRatio;
@@ -25,8 +26,8 @@
 @property (nonatomic) CGRect imageCropRect;
 
 @property (nonatomic) CGFloat rotationAngle;
-
-@property (nonatomic, weak, readonly) UIRotationGestureRecognizer *rotationGestureRecognizer;
+@property (nonatomic) PECropRectView *cropRectView;
+@property (nonatomic) UIImageView *imageView;
 
 - (void)resetCropRect;
 - (void)resetCropRectAnimated:(BOOL)animated;

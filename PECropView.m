@@ -7,21 +7,21 @@
 //
 
 #import "PECropView.h"
-#import "PECropRectView.h"
+//#import "PECropRectView.h"
 #import "UIImage+PECrop.h"
 
-static const CGFloat MarginTop = 37.0f;
-//static const CGFloat MarginBottom = MarginTop;
-static const CGFloat MarginLeft = 20.0f;
-//static const CGFloat MarginRight = MarginLeft;
+static const CGFloat MarginTop = 0.0f;
+static const CGFloat MarginBottom = MarginTop;
+static const CGFloat MarginLeft = 0.0f;
+static const CGFloat MarginRight = MarginLeft;
 
 @interface PECropView () <UIScrollViewDelegate, UIGestureRecognizerDelegate, PECropRectViewDelegate>
 
 @property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic) UIView *zoomingView;
-@property (nonatomic) UIImageView *imageView;
+//@property (nonatomic) UIImageView *imageView;
 
-@property (nonatomic) PECropRectView *cropRectView;
+//@property (nonatomic) PECropRectView *cropRectView;
 @property (nonatomic) UIView *topOverlayView;
 @property (nonatomic) UIView *leftOverlayView;
 @property (nonatomic) UIView *rightOverlayView;
@@ -57,6 +57,8 @@ static const CGFloat MarginLeft = 20.0f;
     return self;
 }
 
+
+
 - (void)commonInit
 {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -76,7 +78,6 @@ static const CGFloat MarginLeft = 20.0f;
     
     UIRotationGestureRecognizer *rotationGestureRecognizer = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
     rotationGestureRecognizer.delegate = self;
-    _rotationGestureRecognizer = rotationGestureRecognizer;
     [self.scrollView addGestureRecognizer:rotationGestureRecognizer];
     
     self.cropRectView = [[PECropRectView alloc] init];
@@ -98,6 +99,11 @@ static const CGFloat MarginLeft = 20.0f;
     self.bottomOverlayView = [[UIView alloc] init];
     self.bottomOverlayView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     [self addSubview:self.bottomOverlayView];
+    
+    
+    
+    self.cropRectView.showsGridMajor = NO;
+    self.cropRectView.showsGridMinor = NO;
 }
 
 #pragma mark -
@@ -159,7 +165,7 @@ static const CGFloat MarginLeft = 20.0f;
 
 - (void)layoutCropRectViewWithCropRect:(CGRect)cropRect
 {
-    self.cropRectView.frame = cropRect;
+//    self.cropRectView.frame = cropRect;
     [self layoutOverlayViewsWithCropRect:cropRect];
 }
 
@@ -429,7 +435,9 @@ static const CGFloat MarginLeft = 20.0f;
 
 - (void)cropRectViewEditingChanged:(PECropRectView *)cropRectView
 {
-    CGRect cropRect = [self cappedCropRectInImageRectWithCropRectView:cropRectView];
+//    CGRect cropRect = [self cappedCropRectInImageRectWithCropRectView:cropRectView];
+    CGRect cropRect = cropRectView.frame;
+    
     
     [self layoutCropRectViewWithCropRect:cropRect];
     
