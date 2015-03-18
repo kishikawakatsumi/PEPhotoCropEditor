@@ -23,10 +23,10 @@
 		14BB4EE7174BD70200C75F78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14BB4EE5174BD70200C75F78 /* InfoPlist.strings */; };
 		14BB4EEC174BD70E00C75F78 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14BB4EE8174BD70E00C75F78 /* MainStoryboard_iPad.storyboard */; };
 		14BB4EED174BD70E00C75F78 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14BB4EEA174BD70E00C75F78 /* MainStoryboard_iPhone.storyboard */; };
-		14BB4F09174BD79E00C75F78 /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F08174BD79E00C75F78 /* PECropView.m */; };
-		14BB4F0C174BD7B100C75F78 /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F0B174BD7B100C75F78 /* PECropViewController.m */; };
-		14BB4F11174BD7CC00C75F78 /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F0E174BD7CA00C75F78 /* PECropRectView.m */; };
 		14BB4F12174BD7CC00C75F78 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F10174BD7CB00C75F78 /* PEResizeControl.m */; };
+		8DEF897B1AB92AF800268A3B /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF89761AB92AF800268A3B /* PECropRectView.m */; };
+		8DEF897C1AB92AF800268A3B /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF89781AB92AF800268A3B /* PECropView.m */; };
+		8DEF897D1AB92AF800268A3B /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF897A1AB92AF800268A3B /* PECropViewController.m */; };
 		E576407617A7889200111967 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E576407417A7889200111967 /* UIImage+PECrop.m */; };
 /* End PBXBuildFile section */
 
@@ -53,14 +53,14 @@
 		14BB4EE6174BD70200C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = DemoApp/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		14BB4EE9174BD70E00C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DemoApp/en.lproj/MainStoryboard_iPad.storyboard; sourceTree = SOURCE_ROOT; };
 		14BB4EEB174BD70E00C75F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = DemoApp/en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
-		14BB4F07174BD79E00C75F78 /* PECropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PECropView.h; path = Lib/PECropView.h; sourceTree = SOURCE_ROOT; };
-		14BB4F08174BD79E00C75F78 /* PECropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PECropView.m; path = Lib/PECropView.m; sourceTree = SOURCE_ROOT; };
-		14BB4F0A174BD7B100C75F78 /* PECropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PECropViewController.h; path = Lib/PECropViewController.h; sourceTree = SOURCE_ROOT; };
-		14BB4F0B174BD7B100C75F78 /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PECropViewController.m; path = Lib/PECropViewController.m; sourceTree = SOURCE_ROOT; };
-		14BB4F0D174BD7CA00C75F78 /* PECropRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PECropRectView.h; path = Lib/PECropRectView.h; sourceTree = SOURCE_ROOT; };
-		14BB4F0E174BD7CA00C75F78 /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PECropRectView.m; path = Lib/PECropRectView.m; sourceTree = SOURCE_ROOT; };
 		14BB4F0F174BD7CB00C75F78 /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEResizeControl.h; path = Lib/PEResizeControl.h; sourceTree = SOURCE_ROOT; };
 		14BB4F10174BD7CB00C75F78 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEResizeControl.m; path = Lib/PEResizeControl.m; sourceTree = SOURCE_ROOT; };
+		8DEF89751AB92AF800268A3B /* PECropRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropRectView.h; sourceTree = SOURCE_ROOT; };
+		8DEF89761AB92AF800268A3B /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropRectView.m; sourceTree = SOURCE_ROOT; };
+		8DEF89771AB92AF800268A3B /* PECropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropView.h; sourceTree = SOURCE_ROOT; };
+		8DEF89781AB92AF800268A3B /* PECropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropView.m; sourceTree = SOURCE_ROOT; };
+		8DEF89791AB92AF800268A3B /* PECropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropViewController.h; sourceTree = SOURCE_ROOT; };
+		8DEF897A1AB92AF800268A3B /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropViewController.m; sourceTree = SOURCE_ROOT; };
 		E576407417A7889200111967 /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+PECrop.m"; path = "Lib/UIImage+PECrop.m"; sourceTree = SOURCE_ROOT; };
 		E576407517A7889200111967 /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+PECrop.h"; path = "Lib/UIImage+PECrop.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -169,12 +169,12 @@
 		14BB4F06174BD79000C75F78 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				14BB4F0A174BD7B100C75F78 /* PECropViewController.h */,
-				14BB4F0B174BD7B100C75F78 /* PECropViewController.m */,
-				14BB4F07174BD79E00C75F78 /* PECropView.h */,
-				14BB4F08174BD79E00C75F78 /* PECropView.m */,
-				14BB4F0D174BD7CA00C75F78 /* PECropRectView.h */,
-				14BB4F0E174BD7CA00C75F78 /* PECropRectView.m */,
+				8DEF89751AB92AF800268A3B /* PECropRectView.h */,
+				8DEF89761AB92AF800268A3B /* PECropRectView.m */,
+				8DEF89771AB92AF800268A3B /* PECropView.h */,
+				8DEF89781AB92AF800268A3B /* PECropView.m */,
+				8DEF89791AB92AF800268A3B /* PECropViewController.h */,
+				8DEF897A1AB92AF800268A3B /* PECropViewController.m */,
 				14BB4F0F174BD7CB00C75F78 /* PEResizeControl.h */,
 				14BB4F10174BD7CB00C75F78 /* PEResizeControl.m */,
 				E576407517A7889200111967 /* UIImage+PECrop.h */,
@@ -255,13 +255,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				14BB4ECE174BC59500C75F78 /* main.m in Sources */,
+				8DEF897D1AB92AF800268A3B /* PECropViewController.m in Sources */,
+				8DEF897C1AB92AF800268A3B /* PECropView.m in Sources */,
 				14BB4EDE174BC5D300C75F78 /* AppDelegate.m in Sources */,
 				14BB4EDF174BC5D300C75F78 /* ViewController.m in Sources */,
-				14BB4F09174BD79E00C75F78 /* PECropView.m in Sources */,
-				14BB4F0C174BD7B100C75F78 /* PECropViewController.m in Sources */,
-				14BB4F11174BD7CC00C75F78 /* PECropRectView.m in Sources */,
 				14BB4F12174BD7CC00C75F78 /* PEResizeControl.m in Sources */,
 				E576407617A7889200111967 /* UIImage+PECrop.m in Sources */,
+				8DEF897B1AB92AF800268A3B /* PECropRectView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
