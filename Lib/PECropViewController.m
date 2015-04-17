@@ -95,7 +95,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
                                                                                        target:nil
                                                                                        action:nil];
         UIBarButtonItem *constrainButton = [[UIBarButtonItem alloc] initWithTitle:PELocalizedString(@"Constrain", nil)
-                                                                            style:UIBarButtonItemStyleBordered
+                                                                            style:UIBarButtonItemStylePlain
                                                                            target:self
                                                                            action:@selector(constrain:)];
         self.toolbarItems = @[flexibleSpace, constrainButton, flexibleSpace];
