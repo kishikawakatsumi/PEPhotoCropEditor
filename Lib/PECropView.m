@@ -320,7 +320,8 @@ static const CGFloat MarginLeft = 20.0f;
 
 - (UIImage *)croppedImage
 {
-    return [self.image rotatedImageWithtransform:self.rotation croppedToRect:self.zoomedCropRect];
+    BOOL isNotTransformed = CGAffineTransformEqualToTransform(self.rotation, CGAffineTransformIdentity);
+    return isNotTransformed ? self.image : [self.image rotatedImageWithtransform:self.rotation croppedToRect:self.zoomedCropRect];
 }
 
 - (CGRect)zoomedCropRect
