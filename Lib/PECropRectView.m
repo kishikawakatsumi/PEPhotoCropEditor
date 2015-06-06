@@ -238,11 +238,19 @@
         
         if (self.keepingAspectRatio) {
             CGRect constrainedRect;
+#if defined(__LP64__)
+            if (fabs(resizeControlView.translation.x) < fabs(resizeControlView.translation.y)) {
+                constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+            } else {
+                constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+            }
+#else
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
                 constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
             } else {
                 constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
             }
+#endif
             constrainedRect.origin.x -= CGRectGetWidth(constrainedRect) - CGRectGetWidth(rect);
             constrainedRect.origin.y -= CGRectGetHeight(constrainedRect) - CGRectGetHeight(rect);
             rect = constrainedRect;
@@ -254,11 +262,19 @@
                           CGRectGetHeight(self.initialRect) - resizeControlView.translation.y);
         
         if (self.keepingAspectRatio) {
+#if defined(__LP64__)
+            if (fabs(resizeControlView.translation.x) < fabs(resizeControlView.translation.y)) {
+                rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+            } else {
+                rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+            }
+#else
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
                 rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
             } else {
                 rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
             }
+#endif
         }
     } else if (resizeControlView == self.bottomLeftCornerView) {
         rect = CGRectMake(CGRectGetMinX(self.initialRect) + resizeControlView.translation.x,
@@ -268,11 +284,19 @@
         
         if (self.keepingAspectRatio) {
             CGRect constrainedRect;
+#if defined(__LP64__)
+            if (fabs(resizeControlView.translation.x) < fabs(resizeControlView.translation.y)) {
+                constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+            } else {
+                constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+            }
+#else
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
                 constrainedRect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
             } else {
                 constrainedRect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
             }
+#endif
             constrainedRect.origin.x -= CGRectGetWidth(constrainedRect) - CGRectGetWidth(rect);
             rect = constrainedRect;
         }
@@ -283,11 +307,19 @@
                           CGRectGetHeight(self.initialRect) + resizeControlView.translation.y);
         
         if (self.keepingAspectRatio) {
+#if defined(__LP64__)
+            if (fabs(resizeControlView.translation.x) < fabs(resizeControlView.translation.y)) {
+                rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
+            } else {
+                rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
+            }
+#else
             if (fabsf(resizeControlView.translation.x) < fabsf(resizeControlView.translation.y)) {
                 rect = [self constrainedRectWithRectBasisOfHeight:rect aspectRatio:self.fixedAspectRatio];
             } else {
                 rect = [self constrainedRectWithRectBasisOfWidth:rect aspectRatio:self.fixedAspectRatio];
             }
+#endif
         }
     }
 
