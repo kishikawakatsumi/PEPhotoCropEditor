@@ -31,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		043B269A1B64019D00007E80 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		14707AE6175B99D800A58D40 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PEPhotoCropEditor.bundle; path = Resources/PEPhotoCropEditor.bundle; sourceTree = SOURCE_ROOT; };
 		14707AEB175B9B6E00A58D40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14707AED175B9B7000A58D40 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 			knownRegions = (
 				en,
 				ja,
+				"zh-Hans",
 			);
 			mainGroup = 14BB4E7D174BC39000C75F78;
 			productRefGroup = 14BB4E87174BC39000C75F78 /* Products */;
@@ -273,6 +275,7 @@
 			children = (
 				14707AEB175B9B6E00A58D40 /* en */,
 				14707AED175B9B7000A58D40 /* ja */,
+				043B269A1B64019D00007E80 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = SOURCE_ROOT;
