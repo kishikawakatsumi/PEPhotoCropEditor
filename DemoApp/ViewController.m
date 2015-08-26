@@ -72,8 +72,10 @@
     CGFloat length = MIN(width, height);
     controller.imageCropRect = CGRectMake((width - length) / 2,
                                           (height - length) / 2,
-                                          length,
-                                          length);
+                                          width,
+                                          length*(65.0f/88.0f));
+    controller.cropAspectRatio = 88.0f/65.0f;
+    controller.keepingCropAspectRatio = YES;
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     

@@ -16,6 +16,7 @@
 @property (nonatomic) BOOL showsGridMajor;
 @property (nonatomic) BOOL showsGridMinor;
 
+@property (nonatomic, assign, getter=isResizable) BOOL resizable;
 @property (nonatomic) BOOL keepingAspectRatio;
 
 @end

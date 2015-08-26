@@ -22,7 +22,7 @@
 @property (nonatomic) CGRect imageCropRect;
 
 @property (nonatomic) BOOL toolbarHidden;
-
+@property (nonatomic, assign, getter=isCropViewResizable) BOOL cropRectViewResizable;
 @property (nonatomic, assign, getter = isRotationEnabled) BOOL rotationEnabled;
 
 @property (nonatomic, readonly) CGAffineTransform rotationTransform;

@@ -7,7 +7,6 @@
 //
 
 #import "PECropView.h"
-#import "PECropRectView.h"
 #import "UIImage+PECrop.h"
 
 static const CGFloat MarginTop = 37.0f;
@@ -21,7 +20,6 @@ static const CGFloat MarginLeft = 20.0f;
 @property (nonatomic) UIView *zoomingView;
 @property (nonatomic) UIImageView *imageView;
 
-@property (nonatomic) PECropRectView *cropRectView;
 @property (nonatomic) UIView *topOverlayView;
 @property (nonatomic) UIView *leftOverlayView;
 @property (nonatomic) UIView *rightOverlayView;
@@ -30,7 +28,6 @@ static const CGFloat MarginLeft = 20.0f;
 @property (nonatomic) CGRect insetRect;
 @property (nonatomic) CGRect editingRect;
 
-@property (nonatomic, getter = isResizing) BOOL resizing;
 @property (nonatomic) UIInterfaceOrientation interfaceOrientation;
 
 @end
