@@ -105,6 +105,7 @@ static inline NSString *PELocalizedString(NSString *key, NSString *comment)
     self.cropView.image = self.image;
     
     self.cropView.rotationGestureRecognizer.enabled = _rotationEnabled;
+    self.cropView.cropRectView.resizable = _cropRectViewResizable;
 }
 
 - (void)viewDidAppear:(BOOL)animated
