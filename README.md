@@ -9,7 +9,7 @@ PEPhotoCropEditor ![License MIT](https://go-shields.herokuapp.com/license-MIT-ye
 
 PEPhotoCropEditor is image cropping library for iOS, similar to the Photos.app UI.
 
-<img src="https://raw.github.com/kishikawakatsumi/PEPhotoCropEditor/master/Screenshots/ss01.png" alt="ScreenShot 1" width="280px" style="width: 280px;" />&nbsp;<a href="https://vimeo.com/66661806"><img src="https://raw2.github.com/kishikawakatsumi/PEPhotoCropEditor/master/Screenshots/movie03.gif" style="width: 242px; height: 476px;" alt="Movie 1" /></a>
+<img src="https://raw.github.com/kishikawakatsumi/PEPhotoCropEditor/master/Screenshots/ss01.png" alt="ScreenShot 1" width="280px" style="width: 280px;" />&nbsp;<a href="https://vimeo.com/66661806"><img src="https://raw.githubusercontent.com/kishikawakatsumi/PEPhotoCropEditor/master/Screenshots/ss02.png" style="width: 369px; height: 276px;" alt="Movie 1" /></a>
 
 
 ## Features
