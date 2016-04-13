@@ -206,14 +206,7 @@ static const CGFloat MarginLeft = 20.0f;
 - (void)setImage:(UIImage *)image
 {
     _image = image;
-    
-    [self.imageView removeFromSuperview];
-    self.imageView = nil;
-    
-    [self.zoomingView removeFromSuperview];
-    self.zoomingView = nil;
-    
-    [self setNeedsLayout];
+    self.imageView.image = image;
 }
 
 - (void)setKeepingCropAspectRatio:(BOOL)keepingCropAspectRatio
