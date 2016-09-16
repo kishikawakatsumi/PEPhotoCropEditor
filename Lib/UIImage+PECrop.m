@@ -14,12 +14,26 @@
                          croppedToRect:(CGRect)rect
 {
     UIImage *rotatedImage = [self pe_rotatedImageWithtransform:rotation];
+    UIImage *croppedImage = [rotatedImage pe_croppedImageWithRect:rect preferredScale:self.scale];
     
-    CGFloat scale = rotatedImage.scale;
+    return croppedImage;
+}
+
+- (UIImage *)pe_croppedImageWithRect:(CGRect)rect
+{
+    return [self pe_croppedImageWithRect:rect preferredScale:self.scale];
+}
+
+#pragma mark - private methods and helpers
+
+- (UIImage *)pe_croppedImageWithRect:(CGRect)rect
+                      preferredScale:(CGFloat)preferredScale
+{
+    CGFloat scale = self.scale;
     CGRect cropRect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(scale, scale));
     
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, cropRect);
-    UIImage *image = [UIImage imageWithCGImage:croppedImage scale:self.scale orientation:rotatedImage.imageOrientation];
+    CGImageRef croppedImage = CGImageCreateWithImageInRect(self.CGImage, cropRect);
+    UIImage *image = [UIImage imageWithCGImage:croppedImage scale:preferredScale orientation:self.imageOrientation];
     CGImageRelease(croppedImage);
     
     return image;
