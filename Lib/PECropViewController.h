@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@interface PEAspectName : NSObject
+@property (nonatomic) NSString *name;
+@property (nonatomic) CGFloat aspectRatio;
+@end
+
 @protocol PECropViewControllerDelegate;
 
 @interface PECropViewController : UIViewController
@@ -32,6 +37,9 @@
 
 - (void)resetCropRect;
 - (void)resetCropRectAnimated:(BOOL)animated;
+
+@property (nonatomic) NSArray *aspectNames;
+- (void)addAspectName:(NSString *)name forRatio:(CGFloat)ratio;
 
 @end
 
