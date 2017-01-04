@@ -365,6 +365,7 @@
 		14BB4EAD174BC39000C75F78 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemoApp/PEPhotoCropEditor-Prefix.pch";
 				INFOPLIST_FILE = "DemoApp/PEPhotoCropEditor-Info.plist";
@@ -376,6 +377,7 @@
 		14BB4EAE174BC39000C75F78 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemoApp/PEPhotoCropEditor-Prefix.pch";
 				INFOPLIST_FILE = "DemoApp/PEPhotoCropEditor-Info.plist";
