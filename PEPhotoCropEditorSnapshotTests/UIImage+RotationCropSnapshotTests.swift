@@ -14,20 +14,14 @@ class UIImage_RotationCropSnapshotTests: FBSnapshotTestCase {
         let image = UIImage.defaultReferenceImage()
         let originalRect = CGRect(image: image)
 
-        let croppedImage = image.rotatedImageWithtransform(.identity, croppedTo: originalRect)
-
-        let resultView = UIImageView.make(image: croppedImage, frame: originalRect)
-        FBSnapshotVerifyView(resultView)
+        verifySnapshot(image: image, transform: .identity, cropRect: originalRect)
     }
 
     func test_cropCenter() {
         let image = UIImage.defaultReferenceImage()
         let centerRect = CGRect(image: image).insetBy(dx: image.size.width/4, dy: image.size.height/4)
 
-        let croppedImage = image.rotatedImageWithtransform(.identity, croppedTo: centerRect)
-
-        let resultView = UIImageView.make(image: croppedImage, frame: centerRect)
-        FBSnapshotVerifyView(resultView)
+        verifySnapshot(image: image, transform: .identity, cropRect: centerRect)
     }
 
     func test_rotateBy60DegreesAndCropCenter() {
@@ -35,10 +29,7 @@ class UIImage_RotationCropSnapshotTests: FBSnapshotTestCase {
         let centerRect = CGRect(image: image).insetBy(dx: image.size.width/4, dy: image.size.height/4)
         let rotation = CGAffineTransform.identity.rotated(by: degToRad(60))
 
-        let croppedImage = image.rotatedImageWithtransform(rotation, croppedTo: centerRect)
-
-        let resultView = UIImageView.make(image: croppedImage, frame: centerRect)
-        FBSnapshotVerifyView(resultView)
+        verifySnapshot(image: image, transform: rotation, cropRect: centerRect)
     }
 
     func test_rotateBy5DegressAndCropTopLeft() {
@@ -46,9 +37,6 @@ class UIImage_RotationCropSnapshotTests: FBSnapshotTestCase {
         let topLeftRect = CGRect(image: image).applying(CGAffineTransform.identity.scaledBy(x: 0.25, y: 0.25))
         let rotation = CGAffineTransform.identity.rotated(by: degToRad(5))
 
-        let croppedImage = image.rotatedImageWithtransform(rotation, croppedTo: topLeftRect)
-
-        let resultView = UIImageView.make(image: croppedImage, frame: topLeftRect)
-        FBSnapshotVerifyView(resultView)
+        verifySnapshot(image: image, transform: rotation, cropRect: topLeftRect)
     }
 }

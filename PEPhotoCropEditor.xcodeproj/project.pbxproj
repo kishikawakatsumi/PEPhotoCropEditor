@@ -34,6 +34,7 @@
 		962407161F2220270052B0D2 /* CGRect+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407151F2220270052B0D2 /* CGRect+Helpers.swift */; };
 		962407181F22211E0052B0D2 /* DegreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407171F22211E0052B0D2 /* DegreesToRadians.swift */; };
 		9624071D1F2223190052B0D2 /* ReferenceSnapshots_64 in Resources */ = {isa = PBXBuildFile; fileRef = 9624071C1F2223190052B0D2 /* ReferenceSnapshots_64 */; };
+		9624071F1F22285C0052B0D2 /* VerifySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624071E1F22285C0052B0D2 /* VerifySnapshot.swift */; };
 		96B2483C1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B2483B1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift */; };
 		E576407617A7889200111967 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E576407417A7889200111967 /* UIImage+PECrop.m */; };
 		F01DBF05843A5DC4E936D53C /* Pods_PEPhotoCropEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFDC1780CC1E7B32C5E7A1A /* Pods_PEPhotoCropEditor.framework */; };
@@ -90,6 +91,7 @@
 		962407151F2220270052B0D2 /* CGRect+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Helpers.swift"; sourceTree = "<group>"; };
 		962407171F22211E0052B0D2 /* DegreesToRadians.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DegreesToRadians.swift; sourceTree = "<group>"; };
 		9624071C1F2223190052B0D2 /* ReferenceSnapshots_64 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ReferenceSnapshots_64; sourceTree = "<group>"; };
+		9624071E1F22285C0052B0D2 /* VerifySnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifySnapshot.swift; sourceTree = "<group>"; };
 		96B248391F22184E002FB09E /* PEPhotoCropEditorSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPhotoCropEditorSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B2483B1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RotationCropSnapshotTests.swift"; sourceTree = "<group>"; };
 		96B2483D1F22184E002FB09E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				962407131F221E910052B0D2 /* UIImageView+Helpers.swift */,
 				962407151F2220270052B0D2 /* CGRect+Helpers.swift */,
 				962407171F22211E0052B0D2 /* DegreesToRadians.swift */,
+				9624071E1F22285C0052B0D2 /* VerifySnapshot.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				962407141F221E910052B0D2 /* UIImageView+Helpers.swift in Sources */,
 				962407161F2220270052B0D2 /* CGRect+Helpers.swift in Sources */,
 				96B2483C1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift in Sources */,
+				9624071F1F22285C0052B0D2 /* VerifySnapshot.swift in Sources */,
 				9624070C1F221C3C0052B0D2 /* UIImage+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
