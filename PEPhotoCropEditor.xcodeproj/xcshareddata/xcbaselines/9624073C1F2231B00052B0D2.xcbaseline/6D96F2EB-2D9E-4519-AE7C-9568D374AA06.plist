@@ -11,9 +11,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.0096486</real>
+					<real>1.4698e-05</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>21 Jul 2017, 22:57:57</string>
+					<string>21 Jul 2017, 22:59:24</string>
 				</dict>
 			</dict>
 			<key>test_noTransformation()</key>
@@ -21,9 +21,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.0095033</real>
+					<real>3.8757e-06</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>21 Jul 2017, 22:57:57</string>
+					<string>21 Jul 2017, 22:59:24</string>
 				</dict>
 			</dict>
 			<key>test_rotateBy60DegreesAndCropWithQuarterInset()</key>
@@ -31,9 +31,9 @@
 				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
 				<dict>
 					<key>baselineAverage</key>
-					<real>0.078639</real>
+					<real>0.022355</real>
 					<key>baselineIntegrationDisplayName</key>
-					<string>21 Jul 2017, 22:57:57</string>
+					<string>21 Jul 2017, 22:59:24</string>
 				</dict>
 			</dict>
 		</dict>
