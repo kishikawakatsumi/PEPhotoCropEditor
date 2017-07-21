@@ -6,7 +6,7 @@
 //  Copyright © 2017 kishikawa katsumi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension CGRect {
 

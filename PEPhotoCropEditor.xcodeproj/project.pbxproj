@@ -44,12 +44,24 @@
 		962407311F2229440052B0D2 /* Portrait_7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 962407291F2229440052B0D2 /* Portrait_7.jpg */; };
 		962407321F2229440052B0D2 /* Portrait_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9624072A1F2229440052B0D2 /* Portrait_8.jpg */; };
 		962407341F222A010052B0D2 /* UIImage+OrientationSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407331F222A010052B0D2 /* UIImage+OrientationSnapshotTests.swift */; };
+		962407401F2231B00052B0D2 /* UIImage+PerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624073F1F2231B00052B0D2 /* UIImage+PerformanceTests.swift */; };
+		962407471F2232090052B0D2 /* default_reference_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9624070E1F221CDB0052B0D2 /* default_reference_image.png */; };
+		962407491F2234080052B0D2 /* DegreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407171F22211E0052B0D2 /* DegreesToRadians.swift */; };
+		9624074A1F2234520052B0D2 /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624070B1F221C3C0052B0D2 /* UIImage+Helpers.swift */; };
+		9624074B1F22348B0052B0D2 /* CGRect+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407151F2220270052B0D2 /* CGRect+Helpers.swift */; };
 		96B2483C1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B2483B1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift */; };
 		E576407617A7889200111967 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E576407417A7889200111967 /* UIImage+PECrop.m */; };
 		F01DBF05843A5DC4E936D53C /* Pods_PEPhotoCropEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFDC1780CC1E7B32C5E7A1A /* Pods_PEPhotoCropEditor.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		962407421F2231B00052B0D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14BB4E7E174BC39000C75F78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14BB4E85174BC39000C75F78;
+			remoteInfo = PEPhotoCropEditor;
+		};
 		96B2483E1F22184E002FB09E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 14BB4E7E174BC39000C75F78 /* Project object */;
@@ -112,6 +124,10 @@
 		962407331F222A010052B0D2 /* UIImage+OrientationSnapshotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+OrientationSnapshotTests.swift"; sourceTree = "<group>"; };
 		962407351F222E480052B0D2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		962407371F2231030052B0D2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		9624073D1F2231B00052B0D2 /* PEPhotoCropEditorPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPhotoCropEditorPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9624073F1F2231B00052B0D2 /* UIImage+PerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+PerformanceTests.swift"; sourceTree = "<group>"; };
+		962407411F2231B00052B0D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9624074C1F2234B20052B0D2 /* PEPhotoCropEditorPerformanceTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPhotoCropEditorPerformanceTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		96B248391F22184E002FB09E /* PEPhotoCropEditorSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPhotoCropEditorSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B2483B1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RotationCropSnapshotTests.swift"; sourceTree = "<group>"; };
 		96B2483D1F22184E002FB09E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +152,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9624073A1F2231B00052B0D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96B248361F22184E002FB09E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,6 +175,7 @@
 			children = (
 				14BB4E8F174BC39000C75F78 /* PEPhotoCropEditor */,
 				96B2483A1F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */,
+				9624073E1F2231B00052B0D2 /* PEPhotoCropEditorPerformanceTests */,
 				14BB4E88174BC39000C75F78 /* Frameworks */,
 				14BB4E87174BC39000C75F78 /* Products */,
 				FA07C6863FDD69469E2255C4 /* Pods */,
@@ -164,6 +188,7 @@
 			children = (
 				14BB4E86174BC39000C75F78 /* PEPhotoCropEditor.app */,
 				96B248391F22184E002FB09E /* PEPhotoCropEditorSnapshotTests.xctest */,
+				9624073D1F2231B00052B0D2 /* PEPhotoCropEditorPerformanceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -292,6 +317,16 @@
 			path = EXIFSamples;
 			sourceTree = "<group>";
 		};
+		9624073E1F2231B00052B0D2 /* PEPhotoCropEditorPerformanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				9624073F1F2231B00052B0D2 /* UIImage+PerformanceTests.swift */,
+				962407411F2231B00052B0D2 /* Info.plist */,
+				9624074C1F2234B20052B0D2 /* PEPhotoCropEditorPerformanceTests-Bridging-Header.h */,
+			);
+			path = PEPhotoCropEditorPerformanceTests;
+			sourceTree = "<group>";
+		};
 		96B2483A1F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +375,24 @@
 			productReference = 14BB4E86174BC39000C75F78 /* PEPhotoCropEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9624073C1F2231B00052B0D2 /* PEPhotoCropEditorPerformanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 962407441F2231B00052B0D2 /* Build configuration list for PBXNativeTarget "PEPhotoCropEditorPerformanceTests" */;
+			buildPhases = (
+				962407391F2231B00052B0D2 /* Sources */,
+				9624073A1F2231B00052B0D2 /* Frameworks */,
+				9624073B1F2231B00052B0D2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				962407431F2231B00052B0D2 /* PBXTargetDependency */,
+			);
+			name = PEPhotoCropEditorPerformanceTests;
+			productName = PEPhotoCropEditorPerformanceTests;
+			productReference = 9624073D1F2231B00052B0D2 /* PEPhotoCropEditorPerformanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		96B248381F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96B248421F22184E002FB09E /* Build configuration list for PBXNativeTarget "PEPhotoCropEditorSnapshotTests" */;
@@ -372,6 +425,13 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "kishikawa katsumi";
 				TargetAttributes = {
+					9624073C1F2231B00052B0D2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = M65KCB5M7T;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 14BB4E85174BC39000C75F78;
+					};
 					96B248381F22184E002FB09E = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = M65KCB5M7T;
@@ -396,6 +456,7 @@
 			targets = (
 				14BB4E85174BC39000C75F78 /* PEPhotoCropEditor */,
 				96B248381F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */,
+				9624073C1F2231B00052B0D2 /* PEPhotoCropEditorPerformanceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -413,6 +474,14 @@
 				14BB4EED174BD70E00C75F78 /* MainStoryboard_iPhone.storyboard in Resources */,
 				14707AE7175B99D900A58D40 /* PEPhotoCropEditor.bundle in Resources */,
 				14707AEA175B9B6E00A58D40 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9624073B1F2231B00052B0D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				962407471F2232090052B0D2 /* default_reference_image.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +613,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		962407391F2231B00052B0D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9624074A1F2234520052B0D2 /* UIImage+Helpers.swift in Sources */,
+				9624074B1F22348B0052B0D2 /* CGRect+Helpers.swift in Sources */,
+				962407401F2231B00052B0D2 /* UIImage+PerformanceTests.swift in Sources */,
+				962407491F2234080052B0D2 /* DegreesToRadians.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96B248351F22184E002FB09E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -561,6 +641,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		962407431F2231B00052B0D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14BB4E85174BC39000C75F78 /* PEPhotoCropEditor */;
+			targetProxy = 962407421F2231B00052B0D2 /* PBXContainerItemProxy */;
+		};
 		96B2483F1F22184E002FB09E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 14BB4E85174BC39000C75F78 /* PEPhotoCropEditor */;
@@ -689,6 +774,82 @@
 			};
 			name = Release;
 		};
+		962407451F2231B00052B0D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = M65KCB5M7T;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = PEPhotoCropEditorPerformanceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tivix.PEPhotoCropEditorPerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "PEPhotoCropEditorPerformanceTests/PEPhotoCropEditorPerformanceTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PEPhotoCropEditor.app/PEPhotoCropEditor";
+			};
+			name = Debug;
+		};
+		962407461F2231B00052B0D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = M65KCB5M7T;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = PEPhotoCropEditorPerformanceTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tivix.PEPhotoCropEditorPerformanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PEPhotoCropEditorPerformanceTests/PEPhotoCropEditorPerformanceTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PEPhotoCropEditor.app/PEPhotoCropEditor";
+			};
+			name = Release;
+		};
 		96B248401F22184E002FB09E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A297BE99A737081B18409705 /* Pods-PEPhotoCropEditorSnapshotTests.debug.xcconfig */;
@@ -784,6 +945,15 @@
 			buildConfigurations = (
 				14BB4EAD174BC39000C75F78 /* Debug */,
 				14BB4EAE174BC39000C75F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		962407441F2231B00052B0D2 /* Build configuration list for PBXNativeTarget "PEPhotoCropEditorPerformanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				962407451F2231B00052B0D2 /* Debug */,
+				962407461F2231B00052B0D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -15,8 +15,11 @@ extension Bundle {
 }
 
 extension UIImage {
+
+    static let defaultReferenceImageName: String = "default_reference_image"
+
     static func defaultReferenceImage() -> UIImage {
-        return UIImage(named: "default_reference_image", in: .test, compatibleWith: nil)!
+        return UIImage(named: UIImage.defaultReferenceImageName, in: .test, compatibleWith: nil)!
     }
 
     convenience init(testImageWithOrientation orientation: UIImageOrientation) {
