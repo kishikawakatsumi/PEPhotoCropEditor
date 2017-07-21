@@ -35,6 +35,18 @@
 				<string>com.apple.platform.iphonesimulator</string>
 			</dict>
 		</dict>
+		<key>73AACBD9-630C-4BB8-AE3F-DE5563B7E40E</key>
+		<dict>
+			<key>targetArchitecture</key>
+			<string>arm64</string>
+			<key>targetDevice</key>
+			<dict>
+				<key>modelCode</key>
+				<string>iPhone9,3</string>
+				<key>platformIdentifier</key>
+				<string>com.apple.platform.iphoneos</string>
+			</dict>
+		</dict>
 		<key>E9630022-6B7D-47C9-8B04-6AA34709EE83</key>
 		<dict>
 			<key>targetArchitecture</key>
