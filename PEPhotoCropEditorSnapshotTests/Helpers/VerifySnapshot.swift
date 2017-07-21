@@ -15,4 +15,10 @@ extension FBSnapshotTestCase {
         let resultView = UIImageView.make(image: croppedImage, frame: cropRect)
         FBSnapshotVerifyView(resultView, file: file, line: line)
     }
+
+    func verifyOrientationSnapshot(orientation: UIImageOrientation, file: StaticString = #file, line: UInt = #line) {
+        let image = UIImage(testImageWithOrientation: orientation)
+        let cropRect = CGRect(image: image).insetBy(dx: image.size.width/5, dy: image.size.height/5)
+        verifySnapshot(image: image, transform: .identity, cropRect: cropRect, file: file, line: line)
+    }
 }
