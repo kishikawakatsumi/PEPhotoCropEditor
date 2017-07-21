@@ -27,8 +27,27 @@
 		14BB4F0C174BD7B100C75F78 /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F0B174BD7B100C75F78 /* PECropViewController.m */; };
 		14BB4F11174BD7CC00C75F78 /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F0E174BD7CA00C75F78 /* PECropRectView.m */; };
 		14BB4F12174BD7CC00C75F78 /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BB4F10174BD7CB00C75F78 /* PEResizeControl.m */; };
+		2879CB026376B1C039106854 /* Pods_PEPhotoCropEditorSnapshotTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B41720B1C433CABF3D2DC8D4 /* Pods_PEPhotoCropEditorSnapshotTests.framework */; };
+		9624070C1F221C3C0052B0D2 /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9624070B1F221C3C0052B0D2 /* UIImage+Helpers.swift */; };
+		9624070F1F221CDB0052B0D2 /* default_reference_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 9624070E1F221CDB0052B0D2 /* default_reference_image.png */; };
+		962407141F221E910052B0D2 /* UIImageView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407131F221E910052B0D2 /* UIImageView+Helpers.swift */; };
+		962407161F2220270052B0D2 /* CGRect+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407151F2220270052B0D2 /* CGRect+Helpers.swift */; };
+		962407181F22211E0052B0D2 /* DegreesToRadians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962407171F22211E0052B0D2 /* DegreesToRadians.swift */; };
+		9624071D1F2223190052B0D2 /* ReferenceSnapshots_64 in Resources */ = {isa = PBXBuildFile; fileRef = 9624071C1F2223190052B0D2 /* ReferenceSnapshots_64 */; };
+		96B2483C1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B2483B1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift */; };
 		E576407617A7889200111967 /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = E576407417A7889200111967 /* UIImage+PECrop.m */; };
+		F01DBF05843A5DC4E936D53C /* Pods_PEPhotoCropEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DFDC1780CC1E7B32C5E7A1A /* Pods_PEPhotoCropEditor.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		96B2483E1F22184E002FB09E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14BB4E7E174BC39000C75F78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14BB4E85174BC39000C75F78;
+			remoteInfo = PEPhotoCropEditor;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		14707AE6175B99D800A58D40 /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PEPhotoCropEditor.bundle; path = Resources/PEPhotoCropEditor.bundle; sourceTree = SOURCE_ROOT; };
@@ -61,6 +80,22 @@
 		14BB4F0E174BD7CA00C75F78 /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PECropRectView.m; path = Lib/PECropRectView.m; sourceTree = SOURCE_ROOT; };
 		14BB4F0F174BD7CB00C75F78 /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PEResizeControl.h; path = Lib/PEResizeControl.h; sourceTree = SOURCE_ROOT; };
 		14BB4F10174BD7CB00C75F78 /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PEResizeControl.m; path = Lib/PEResizeControl.m; sourceTree = SOURCE_ROOT; };
+		27B08048766348272174D91F /* Pods-PEPhotoCropEditor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PEPhotoCropEditor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PEPhotoCropEditor/Pods-PEPhotoCropEditor.debug.xcconfig"; sourceTree = "<group>"; };
+		7DFDC1780CC1E7B32C5E7A1A /* Pods_PEPhotoCropEditor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PEPhotoCropEditor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		832FFEFBF0172684E7A01E86 /* Pods-PEPhotoCropEditorSnapshotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PEPhotoCropEditorSnapshotTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PEPhotoCropEditorSnapshotTests/Pods-PEPhotoCropEditorSnapshotTests.release.xcconfig"; sourceTree = "<group>"; };
+		9624070B1F221C3C0052B0D2 /* UIImage+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Helpers.swift"; sourceTree = "<group>"; };
+		9624070E1F221CDB0052B0D2 /* default_reference_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_reference_image.png; sourceTree = "<group>"; };
+		962407101F221DA40052B0D2 /* PEPhotoCropEditorSnapshotTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PEPhotoCropEditorSnapshotTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		962407131F221E910052B0D2 /* UIImageView+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Helpers.swift"; sourceTree = "<group>"; };
+		962407151F2220270052B0D2 /* CGRect+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Helpers.swift"; sourceTree = "<group>"; };
+		962407171F22211E0052B0D2 /* DegreesToRadians.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DegreesToRadians.swift; sourceTree = "<group>"; };
+		9624071C1F2223190052B0D2 /* ReferenceSnapshots_64 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ReferenceSnapshots_64; sourceTree = "<group>"; };
+		96B248391F22184E002FB09E /* PEPhotoCropEditorSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PEPhotoCropEditorSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96B2483B1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+RotationCropSnapshotTests.swift"; sourceTree = "<group>"; };
+		96B2483D1F22184E002FB09E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A297BE99A737081B18409705 /* Pods-PEPhotoCropEditorSnapshotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PEPhotoCropEditorSnapshotTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PEPhotoCropEditorSnapshotTests/Pods-PEPhotoCropEditorSnapshotTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B41720B1C433CABF3D2DC8D4 /* Pods_PEPhotoCropEditorSnapshotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PEPhotoCropEditorSnapshotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D010503D630465CFE2EFD045 /* Pods-PEPhotoCropEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PEPhotoCropEditor.release.xcconfig"; path = "Pods/Target Support Files/Pods-PEPhotoCropEditor/Pods-PEPhotoCropEditor.release.xcconfig"; sourceTree = "<group>"; };
 		E576407417A7889200111967 /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+PECrop.m"; path = "Lib/UIImage+PECrop.m"; sourceTree = SOURCE_ROOT; };
 		E576407517A7889200111967 /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+PECrop.h"; path = "Lib/UIImage+PECrop.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -75,6 +110,15 @@
 				14BB4E8E174BC39000C75F78 /* CoreGraphics.framework in Frameworks */,
 				14BB4EE1174BC68700C75F78 /* QuartzCore.framework in Frameworks */,
 				14BB4EE3174BC68C00C75F78 /* AVFoundation.framework in Frameworks */,
+				F01DBF05843A5DC4E936D53C /* Pods_PEPhotoCropEditor.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96B248361F22184E002FB09E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2879CB026376B1C039106854 /* Pods_PEPhotoCropEditorSnapshotTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				14BB4E8F174BC39000C75F78 /* PEPhotoCropEditor */,
+				96B2483A1F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */,
 				14BB4E88174BC39000C75F78 /* Frameworks */,
 				14BB4E87174BC39000C75F78 /* Products */,
+				FA07C6863FDD69469E2255C4 /* Pods */,
 			);
 			sourceTree = "<group>";
 			wrapsLines = 0;
@@ -95,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				14BB4E86174BC39000C75F78 /* PEPhotoCropEditor.app */,
+				96B248391F22184E002FB09E /* PEPhotoCropEditorSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,6 +154,8 @@
 				14BB4E8D174BC39000C75F78 /* CoreGraphics.framework */,
 				14BB4EE0174BC68700C75F78 /* QuartzCore.framework */,
 				14BB4EE2174BC68C00C75F78 /* AVFoundation.framework */,
+				7DFDC1780CC1E7B32C5E7A1A /* Pods_PEPhotoCropEditor.framework */,
+				B41720B1C433CABF3D2DC8D4 /* Pods_PEPhotoCropEditorSnapshotTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,6 +232,49 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		9624070A1F221C2A0052B0D2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9624070B1F221C3C0052B0D2 /* UIImage+Helpers.swift */,
+				962407131F221E910052B0D2 /* UIImageView+Helpers.swift */,
+				962407151F2220270052B0D2 /* CGRect+Helpers.swift */,
+				962407171F22211E0052B0D2 /* DegreesToRadians.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		9624070D1F221C860052B0D2 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				9624070E1F221CDB0052B0D2 /* default_reference_image.png */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		96B2483A1F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */ = {
+			isa = PBXGroup;
+			children = (
+				9624071C1F2223190052B0D2 /* ReferenceSnapshots_64 */,
+				9624070D1F221C860052B0D2 /* Fixtures */,
+				9624070A1F221C2A0052B0D2 /* Helpers */,
+				96B2483B1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift */,
+				96B2483D1F22184E002FB09E /* Info.plist */,
+				962407101F221DA40052B0D2 /* PEPhotoCropEditorSnapshotTests-Bridging-Header.h */,
+			);
+			path = PEPhotoCropEditorSnapshotTests;
+			sourceTree = "<group>";
+		};
+		FA07C6863FDD69469E2255C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27B08048766348272174D91F /* Pods-PEPhotoCropEditor.debug.xcconfig */,
+				D010503D630465CFE2EFD045 /* Pods-PEPhotoCropEditor.release.xcconfig */,
+				A297BE99A737081B18409705 /* Pods-PEPhotoCropEditorSnapshotTests.debug.xcconfig */,
+				832FFEFBF0172684E7A01E86 /* Pods-PEPhotoCropEditorSnapshotTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,9 +282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14BB4EAC174BC39000C75F78 /* Build configuration list for PBXNativeTarget "PEPhotoCropEditor" */;
 			buildPhases = (
+				A0C73EBE99AF5357C9060E84 /* [CP] Check Pods Manifest.lock */,
 				14BB4E82174BC39000C75F78 /* Sources */,
 				14BB4E83174BC39000C75F78 /* Frameworks */,
 				14BB4E84174BC39000C75F78 /* Resources */,
+				A578652677985CB67111B6FC /* [CP] Embed Pods Frameworks */,
+				DD6E2F680BC354B58B5927EE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -203,6 +298,27 @@
 			productReference = 14BB4E86174BC39000C75F78 /* PEPhotoCropEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		96B248381F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96B248421F22184E002FB09E /* Build configuration list for PBXNativeTarget "PEPhotoCropEditorSnapshotTests" */;
+			buildPhases = (
+				92EA8B57DBF808B3B5B5CF19 /* [CP] Check Pods Manifest.lock */,
+				96B248351F22184E002FB09E /* Sources */,
+				96B248361F22184E002FB09E /* Frameworks */,
+				96B248371F22184E002FB09E /* Resources */,
+				A770720D2DA69BA4536FD037 /* [CP] Embed Pods Frameworks */,
+				69A17D34FCCAE84A66956BFD /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96B2483F1F22184E002FB09E /* PBXTargetDependency */,
+			);
+			name = PEPhotoCropEditorSnapshotTests;
+			productName = PEPhotoCropEditorSnapshotTests;
+			productReference = 96B248391F22184E002FB09E /* PEPhotoCropEditorSnapshotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,8 +326,18 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PE;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "kishikawa katsumi";
+				TargetAttributes = {
+					96B248381F22184E002FB09E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = M65KCB5M7T;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 14BB4E85174BC39000C75F78;
+					};
+				};
 			};
 			buildConfigurationList = 14BB4E81174BC39000C75F78 /* Build configuration list for PBXProject "PEPhotoCropEditor" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -227,6 +353,7 @@
 			projectRoot = "";
 			targets = (
 				14BB4E85174BC39000C75F78 /* PEPhotoCropEditor */,
+				96B248381F22184E002FB09E /* PEPhotoCropEditorSnapshotTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,7 +374,109 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96B248371F22184E002FB09E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9624071D1F2223190052B0D2 /* ReferenceSnapshots_64 in Resources */,
+				9624070F1F221CDB0052B0D2 /* default_reference_image.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69A17D34FCCAE84A66956BFD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PEPhotoCropEditorSnapshotTests/Pods-PEPhotoCropEditorSnapshotTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92EA8B57DBF808B3B5B5CF19 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A0C73EBE99AF5357C9060E84 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A578652677985CB67111B6FC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PEPhotoCropEditor/Pods-PEPhotoCropEditor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A770720D2DA69BA4536FD037 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PEPhotoCropEditorSnapshotTests/Pods-PEPhotoCropEditorSnapshotTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD6E2F680BC354B58B5927EE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PEPhotoCropEditor/Pods-PEPhotoCropEditor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14BB4E82174BC39000C75F78 /* Sources */ = {
@@ -265,7 +494,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96B248351F22184E002FB09E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				962407181F22211E0052B0D2 /* DegreesToRadians.swift in Sources */,
+				962407141F221E910052B0D2 /* UIImageView+Helpers.swift in Sources */,
+				962407161F2220270052B0D2 /* CGRect+Helpers.swift in Sources */,
+				96B2483C1F22184E002FB09E /* UIImage+RotationCropSnapshotTests.swift in Sources */,
+				9624070C1F221C3C0052B0D2 /* UIImage+Helpers.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		96B2483F1F22184E002FB09E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14BB4E85174BC39000C75F78 /* PEPhotoCropEditor */;
+			targetProxy = 96B2483E1F22184E002FB09E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		14707AEC175B9B6E00A58D40 /* Localizable.strings */ = {
@@ -364,10 +613,12 @@
 		};
 		14BB4EAD174BC39000C75F78 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27B08048766348272174D91F /* Pods-PEPhotoCropEditor.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemoApp/PEPhotoCropEditor-Prefix.pch";
 				INFOPLIST_FILE = "DemoApp/PEPhotoCropEditor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -375,12 +626,92 @@
 		};
 		14BB4EAE174BC39000C75F78 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D010503D630465CFE2EFD045 /* Pods-PEPhotoCropEditor.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DemoApp/PEPhotoCropEditor-Prefix.pch";
 				INFOPLIST_FILE = "DemoApp/PEPhotoCropEditor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		96B248401F22184E002FB09E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A297BE99A737081B18409705 /* Pods-PEPhotoCropEditorSnapshotTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = M65KCB5M7T;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = PEPhotoCropEditorSnapshotTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tivix.PEPhotoCropEditorSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "PEPhotoCropEditorSnapshotTests/PEPhotoCropEditorSnapshotTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PEPhotoCropEditor.app/PEPhotoCropEditor";
+			};
+			name = Debug;
+		};
+		96B248411F22184E002FB09E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 832FFEFBF0172684E7A01E86 /* Pods-PEPhotoCropEditorSnapshotTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = M65KCB5M7T;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = PEPhotoCropEditorSnapshotTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tivix.PEPhotoCropEditorSnapshotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PEPhotoCropEditorSnapshotTests/PEPhotoCropEditorSnapshotTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PEPhotoCropEditor.app/PEPhotoCropEditor";
 			};
 			name = Release;
 		};
@@ -401,6 +732,15 @@
 			buildConfigurations = (
 				14BB4EAD174BC39000C75F78 /* Debug */,
 				14BB4EAE174BC39000C75F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96B248421F22184E002FB09E /* Build configuration list for PBXNativeTarget "PEPhotoCropEditorSnapshotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96B248401F22184E002FB09E /* Debug */,
+				96B248411F22184E002FB09E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
