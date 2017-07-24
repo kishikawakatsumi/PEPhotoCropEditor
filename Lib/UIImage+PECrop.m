@@ -10,40 +10,71 @@
 
 @implementation UIImage (PECrop)
 
-- (UIImage *)rotatedImageWithtransform:(CGAffineTransform)rotation
-                         croppedToRect:(CGRect)rect
+- (UIImage *)rotatedImageWithtransform:(CGAffineTransform)transform
+                         croppedToRect:(CGRect)originalCropRect
 {
-    UIImage *rotatedImage = [self pe_rotatedImageWithtransform:rotation];
-    
-    CGFloat scale = rotatedImage.scale;
-    CGRect cropRect = CGRectApplyAffineTransform(rect, CGAffineTransformMakeScale(scale, scale));
-    
-    CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage, cropRect);
-    UIImage *image = [UIImage imageWithCGImage:croppedImage scale:self.scale orientation:rotatedImage.imageOrientation];
-    CGImageRelease(croppedImage);
-    
-    return image;
+    // if not rotated - just cropping will do
+    if (CGAffineTransformIsIdentity(transform)) {
+        CGRect adjustedCropRect = [self pe_orientationAdjustedCropRect:originalCropRect];
+        CGImageRef image = CGImageCreateWithImageInRect(self.CGImage, adjustedCropRect);
+        UIImage *croppedImage = [UIImage imageWithCGImage:image scale:self.scale orientation:self.imageOrientation];
+        CGImageRelease(image);
+        return croppedImage;
+    }
+
+    return [self pe_coreGraphicsRotatedImageWithTransform:transform cropRect:originalCropRect];
 }
 
-- (UIImage *)pe_rotatedImageWithtransform:(CGAffineTransform)transform
+- (UIImage *)pe_coreGraphicsRotatedImageWithTransform:(CGAffineTransform)transform
+                                             cropRect:(CGRect)originalCropRect
 {
-    CGSize size = self.size;
-    
-    UIGraphicsBeginImageContextWithOptions(size,
+    UIGraphicsBeginImageContextWithOptions(originalCropRect.size,
                                            YES,                     // Opaque
                                            self.scale);             // Use image scale
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextTranslateCTM(context, size.width / 2, size.height / 2);
+
+    CGContextTranslateCTM(context, -originalCropRect.origin.x, -originalCropRect.origin.y);
+    CGContextTranslateCTM(context, self.size.width / 2, self.size.height / 2);
     CGContextConcatCTM(context, transform);
-    CGContextTranslateCTM(context, size.width / -2, size.height / -2);
-    [self drawInRect:CGRectMake(0.0f, 0.0f, size.width, size.height)];
-    
+    CGContextTranslateCTM(context, self.size.width / -2, self.size.height / -2);
+
+    [self drawAtPoint:CGPointZero];
+
     UIImage *rotatedImage = UIGraphicsGetImageFromCurrentImageContext();
-    
     UIGraphicsEndImageContext();
-    
     return rotatedImage;
+}
+
+- (CGRect)pe_orientationAdjustedCropRect:(CGRect)originalCropRect {
+
+    CGAffineTransform rectTransform;
+    switch (self.imageOrientation)
+    {
+        case UIImageOrientationUp:
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored:
+            rectTransform = CGAffineTransformIdentity;
+            break;
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(M_PI_2), 0, -self.size.height);
+            break;
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(-M_PI_2), -self.size.width, 0);
+            break;
+        case UIImageOrientationDown:
+            rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(-M_PI), -self.size.width, -self.size.height);
+            break;
+    };
+
+    rectTransform = CGAffineTransformScale(rectTransform, self.scale, self.scale);
+    CGRect transformed = CGRectApplyAffineTransform(originalCropRect, rectTransform);
+    transformed.origin.x = round(transformed.origin.x);
+    transformed.origin.y = round(transformed.origin.y);
+    transformed.size.width = round(transformed.size.width);
+    transformed.size.height = round(transformed.size.height);
+    return  transformed;
 }
 
 @end

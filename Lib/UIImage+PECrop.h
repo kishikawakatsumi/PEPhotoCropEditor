@@ -10,7 +10,7 @@
 
 @interface UIImage (PECrop)
 
-- (UIImage *)rotatedImageWithtransform:(CGAffineTransform)rotation
-                         croppedToRect:(CGRect)rect;
+- (UIImage *)rotatedImageWithtransform:(CGAffineTransform)transform
+                         croppedToRect:(CGRect)originalCropRect;
 
 @end

@@ -109,3 +109,7 @@ self.cropView.imageCropRect = CGRectMake((width - length) / 2,
 [BSD]: http://opensource.org/licenses/bsd-license.php
 
 PEPhotoCropEditor is available under the [MIT license][MIT]. See the LICENSE file for more info.
+
+## Attributions
+
+Fixtures for orientation snapshot tests are taken from [EXIF Orientation Handling Is a Ghetto](www.daveperrett.com/articles/2012/07/28/exif-orientation-handling-is-a-ghetto/) article.
